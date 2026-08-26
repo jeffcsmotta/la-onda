@@ -1,0 +1,35 @@
+[
+  { "slug": "pizza-camarao", "Title": "Pizza de Camarão", "Category": "pizzas", "Image": "", "Price": 48, "Text": "Massa de longa fermentação, farinha italiana, camarão selecionado." },
+  { "slug": "pizza-calabresa", "Title": "Pizza Calabresa", "Category": "pizzas", "Image": "", "Price": 40, "Text": "Clássica com calabresa e molho de tomate." },
+  { "slug": "pizza-mussarela", "Title": "Pizza Mussarela", "Category": "pizzas", "Image": "", "Price": 40, "Text": "Tradicional com queijo mozzarella." },
+  { "slug": "pizza-4-queijos", "Title": "Pizza 4 Queijos", "Category": "pizzas", "Image": "", "Price": 45, "Text": "Quatro tipos de queijo especial." },
+
+  { "slug": "nhoque-batata-noccioli", "Title": "Nhoque de Batata Noccioli", "Category": "massas-nhoques", "Image": "", "Price": 40, "Text": "Com molho 4 queijos, peito de peru e nozes pecan." },
+  { "slug": "nhoque-recheado-calabresa", "Title": "Nhoque Recheado Calabresa", "Category": "massas-nhoques", "Image": "", "Price": 43, "Text": "Calabresa com mussarela derretida." },
+  { "slug": "nhoque-recheado-mussarela", "Title": "Nhoque Recheado Mussarela", "Category": "massas-nhoques", "Image": "", "Price": 40, "Text": "Mussarela simples cremosa." },
+  { "slug": "nhoque-recheado-mussarela-catupiry", "Title": "Nhoque Recheado Mussarela c/ Catupiry", "Category": "massas-nhoques", "Image": "", "Price": 43, "Text": "Mussarela + catupiry cremoso." },
+  { "slug": "massas-recheadas", "Title": "Massas Recheadas", "Category": "massas-nhoques", "Image": "", "Price": 35, "Text": "Variedade de massas recheadas." },
+
+  { "slug": "lasanha-bolonhesa", "Title": "Lasanha Bolonhesa", "Category": "lasanhas", "Image": "", "Price": 45, "Text": "Camadas generosas de carne e queijo derretido." },
+  { "slug": "lasanha-3-queijos", "Title": "Lasanha 3 Queijos", "Category": "lasanhas", "Image": "", "Price": 43, "Text": "Apenas queijos especiais selecionados." },
+  { "slug": "lasanha-abobrinha-frango", "Title": "Lasanha Abobrinha c/ Frango", "Category": "lasanhas", "Image": "", "Price": 47, "Text": "Molho branco com abobrinha e frango desfiado." },
+  { "slug": "lasanha-tradicional", "Title": "Lasanha Tradicional", "Category": "lasanhas", "Image": "", "Price": 43, "Text": "Clássica com molho de tomate e queijo." },
+
+  { "slug": "panqueca-brocolis", "Title": "Panqueca de Brócolis", "Category": "panquecas", "Image": "", "Price": 35, "Text": "Com palmito e molho branco." },
+  { "slug": "panqueca-3-queijos", "Title": "Panqueca 3 Queijos", "Category": "panquecas", "Image": "", "Price": 40, "Text": "Três tipos de queijo gratinado." },
+
+  { "slug": "molho-ao-sugo", "Title": "Molho ao Sugo", "Category": "molhos", "Image": "", "Price": 18, "Text": "Natural ou extrato de tomate temperado." },
+  { "slug": "molho-bolonhesa", "Title": "Molho Bolonhesa", "Category": "molhos", "Image": "", "Price": 20, "Text": "Com carne moída e tomates selecionados." },
+  { "slug": "molho-4-queijos", "Title": "Molho 4 Queijos", "Category": "molhos", "Image": "", "Price": 22, "Text": "Cremoso e especial para nhoques." },
+  { "slug": "molho-frango-desfiado", "Title": "Molho de Frango Desfiado", "Category": "molhos", "Image": "", "Price": 22, "Text": "Para acompanhar nhoques e massas." },
+  { "slug": "molho-camarao", "Title": "Molho de Camarão", "Category": "molhos", "Image": "", "Price": 26, "Text": "Para pizzas e massas." },
+  { "slug": "molho-ao-sugo-branco", "Title": "Molho ao Sugo Branco", "Category": "molhos", "Image": "", "Price": 18, "Text": "Molho branco com ervas finas." },
+  { "slug": "molho-caseiro-1", "Title": "Molho Caseiro Especial 1", "Category": "molhos", "Image": "", "Price": 19, "Text": "Variedade caseira da casa." },
+  { "slug": "molho-caseiro-2", "Title": "Molho Caseiro Especial 2", "Category": "molhos", "Image": "", "Price": 19, "Text": "Variedade caseira da casa." },
+  { "slug": "molho-caseiro-3", "Title": "Molho Caseiro Especial 3", "Category": "molhos", "Image": "", "Price": 19, "Text": "Variedade caseira da casa." },
+
+  { "slug": "carnes-selecionadas", "Title": "Carnes Selecionadas", "Category": "outros", "Image": "", "Price": 60, "Text": "Carne para preparos diversos." },
+  { "slug": "vinhos-importados", "Title": "Vinhos Importados", "Category": "outros", "Image": "", "Price": 80, "Text": "Seleção de vinhos para acompanhar." },
+  { "slug": "azeites-premium", "Title": "Azeites Premium", "Category": "outros", "Image": "", "Price": 50, "Text": "Azeites especiais importados." },
+  { "slug": "produtos-coloniais", "Title": "Produtos Coloniais", "Category": "outros", "Image": "", "Price": 30, "Text": "Produtos da região." }
+]

@@ -1,0 +1,18 @@
+{
+  "slug": "la-onda",
+  "name": "La Onda — Empório de Congelados",
+  "tagline": "Congelados artesanais",
+  "whatsapp": "5554999999999",
+  "domain": "laonda.com.br",
+  "colors": {
+    "primary": "#0e7c86",
+    "bg": "#0b1f24",
+    "surface": "#103039",
+    "surface-2": "#163b46",
+    "text": "#f3f7f8",
+    "muted": "#9fc0c6",
+    "accent": "#37c2d1"
+  },
+  "bioLink": "/carrinho",
+  "apps": ["carrinho"]
+}

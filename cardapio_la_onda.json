@@ -1,0 +1,192 @@
+{
+  "restaurant": "La Onda - Empório de Congelados",
+  "location": "Rua Tronca, 3184, Bairro Rio Branco, Caxias do Sul - RS",
+  "categories": {
+    "pizzas": [
+      {
+        "name": "Pizza de Camarão",
+        "description": "Massa de longa fermentação, farinha italiana, camarão selecionado",
+        "price_range": "R$ 40-50"
+      },
+      {
+        "name": "Pizza Calabresa",
+        "description": "Clássica com calabresa e molho de tomate",
+        "price_range": "R$ 35-45"
+      },
+      {
+        "name": "Pizza Mussarela",
+        "description": "Tradicional com queijo mozzarella",
+        "price_range": "R$ 35-45"
+      },
+      {
+        "name": "Pizza 4 Queijos",
+        "description": "Quatro tipos de queijo especial",
+        "price_range": "R$ 40-50"
+      }
+    ],
+    "massas_nhoques": [
+      {
+        "name": "Nhoque de Batata Noccioli",
+        "description": "Com molho 4 queijos, peito de peru e nozes pecan",
+        "price_range": "R$ 35-45"
+      },
+      {
+        "name": "Nhoque Recheado Calabresa",
+        "description": "Calabresa com mussarela derretida",
+        "price_range": "R$ 38-48"
+      },
+      {
+        "name": "Nhoque Recheado Mussarela",
+        "description": "Mussarela simples cremosa",
+        "price_range": "R$ 35-45"
+      },
+      {
+        "name": "Nhoque Recheado Mussarela com Catupiry",
+        "description": "Mussarela + catupiry cremoso",
+        "price_range": "R$ 38-48"
+      },
+      {
+        "name": "Massas Recheadas",
+        "description": "Variedade de massas recheadas",
+        "price_range": "R$ 30-40"
+      }
+    ],
+    "lasanhas": [
+      {
+        "name": "Lasanha Bolonhesa",
+        "description": "Camadas generosas de carne e queijo derretido",
+        "price_range": "R$ 40-50"
+      },
+      {
+        "name": "Lasanha 3 Queijos",
+        "description": "Apenas queijos especiais selecionados",
+        "price_range": "R$ 38-48"
+      },
+      {
+        "name": "Lasanha Abobrinha c/ Frango",
+        "description": "Molho branco com abobrinha e frango desfiado",
+        "price_range": "R$ 42-52"
+      },
+      {
+        "name": "Lasanha Tradicional",
+        "description": "Clássica com molho de tomate e queijo",
+        "price_range": "R$ 38-48"
+      }
+    ],
+    "panquecas": [
+      {
+        "name": "Panqueca de Brócolis",
+        "description": "Com palmito e molho branco",
+        "price_range": "R$ 30-40"
+      },
+      {
+        "name": "Panqueca 3 Queijos",
+        "description": "Três tipos de queijo gratinado",
+        "price_range": "R$ 35-45"
+      }
+    ],
+    "molhos": [
+      {
+        "name": "Molho ao Sugo",
+        "description": "Natural ou extrato de tomate temperado",
+        "price_range": "Pote unitário"
+      },
+      {
+        "name": "Molho Bolonhesa",
+        "description": "Com carne moída e tomates selecionados",
+        "price_range": "Pote unitário"
+      },
+      {
+        "name": "Molho 4 Queijos",
+        "description": "Cremoso e especial para nhoques",
+        "price_range": "Pote unitário"
+      },
+      {
+        "name": "Molho de Frango Desfiado",
+        "description": "Para acompanhar nhoques e massas",
+        "price_range": "Pote unitário"
+      },
+      {
+        "name": "Molho de Camarão",
+        "description": "Para pizzas e massas",
+        "price_range": "Pote unitário"
+      },
+      {
+        "name": "Molho ao Sugo Branco",
+        "description": "Molho branco com ervas finas",
+        "price_range": "Pote unitário"
+      },
+      {
+        "name": "Molho Caseiro Especial 1",
+        "description": "Variedade caseira da casa",
+        "price_range": "Pote unitário"
+      },
+      {
+        "name": "Molho Caseiro Especial 2",
+        "description": "Variedade caseira da casa",
+        "price_range": "Pote unitário"
+      },
+      {
+        "name": "Molho Caseiro Especial 3",
+        "description": "Variedade caseira da casa",
+        "price_range": "Pote unitário"
+      }
+    ],
+    "outros": [
+      {
+        "name": "Carnes Selecionadas",
+        "description": "Carne para preparos diversos",
+        "price_range": "Consultar"
+      },
+      {
+        "name": "Vinhos Importados",
+        "description": "Seleção de vinhos para acompanhar",
+        "price_range": "Consultar"
+      },
+      {
+        "name": "Azeites Premium",
+        "description": "Azeites especiais importados",
+        "price_range": "Consultar"
+      },
+      {
+        "name": "Produtos Coloniais",
+        "description": "Produtos da região",
+        "price_range": "Consultar"
+      }
+    ]
+  },
+  "promocoes": [
+    {
+      "titulo": "Compre 2 pizzas e ganhe 1 molho",
+      "descricao": "Ao comprar duas pizzas, cliente ganha um molho de presente para escolher o sabor",
+      "condicoes": "Válida enquanto durar estoque - consulta no estabelecimento"
+    }
+  ],
+  "horario_funcionamento": {
+    "terca_sexta": "7:30-12:00 & 13:15-18:30",
+    "sabado": "9:00-12:00",
+    "domingo": "Fechado",
+    "segunda": "Fechado ou parcial"
+  },
+  "preparo_recomendado": {
+    "nhoques": "5 min micro-ondas ou 20 min forno 180°C",
+    "pizzas": "Aquecer no forno ou micro-ondas",
+    "lasanhas": "Aquecer conforme instruções da embalagem"
+  },
+  "informacoes_uteis": {
+    "endereco_completo": "Rua Tronca, 3184, Bairro Rio Branco, Caxias do Sul - RS",
+    "contato_instagram": "@laondacaxias",
+    "contato_facebook": "@laondacaxias",
+    "produto": "Congelados italianos",
+    "validade_padrao": "6-12 meses (verificar embalagem)",
+    "conservacao": "Entre -18°C a -25°C"
+  },
+  "fontes_pesquisa": [
+    "Instagram @laondacaxias (posts de 2022-2026)",
+    "Facebook @laondacaxias (posts e descrições)",
+    "Web searches (ifood, cylex, web search results)",
+    "Observação: Ifood página protegida por Cloudflare"
+  ],
+  "data_atualizacao": "2026-08-25",
+  "observacao": "Preços indicados são estimativas baseadas no mercado de produtos congelados similares. Para preços exatos, consultar Ifood app ou estabelecimento diretamente."
+}

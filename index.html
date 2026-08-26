@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Onda | Massas Artesanais, Molhos & Pratos Prontos em Caxias do Sul</title>
+  <meta name="description" content="🍝 La Onda Massas Artesanais — Tortéis coloniais, nhoques de batata grano duro, lasanhas gratinadas, molhos nobres e pratos prontos em Caxias do Sul. Peça pelo WhatsApp com tele-entrega e retirada!">
+  <meta name="keywords" content="La Onda Caxias do Sul, Massas Artesanais Caxias, Tortei Caxias do Sul, Nhoque Artesanal, Lasanha Congelada, Pratos Prontos Caxias">
+
+  <!-- Open Graph / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="La Onda Massas Artesanais">
+  <meta property="og:title" content="La Onda | Massas Artesanais & Pratos Prontos em Caxias do Sul">
+  <meta property="og:description" content="🍝 Tortéis coloniais, nhoques grano duro, lasanhas, molhos nobres e pratos prontos. Faça seu pedido online direto pelo WhatsApp!">
+  <meta property="og:image" content="assets/logo.svg">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Schema.org JSON-LD (SEO Local & Google Rich Snippets) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "La Onda Massas Artesanais & Pratos Prontos",
+    "image": "assets/logo.svg",
+    "telephone": "+5554999917779",
+    "priceRange": "$$",
+    "servesCuisine": ["Italiana", "Massas Artesanais", "Pratos Prontos", "Molhos"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Tronca, 3184",
+      "addressLocality": "Caxias do Sul",
+      "addressRegion": "RS",
+      "postalCode": "95010-100",
+      "addressCountry": "BR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -29.1732,
+      "longitude": -51.1896
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "09:00",
+        "closes": "21:00"
+      }
+    ]
+  }
+  </script>
+
+  <!-- PWA Manifest & Theme -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#7F1D1D">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="La Onda">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <span class="badge">Tradição Italiana</span>
+        <span>Massas frescas e pratos prontos em Caxias do Sul</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="https://wa.me/5554999917779" target="_blank" rel="noopener">
+          <i data-lucide="phone"></i>
+          <span>(54) 99991-7779</span>
+        </a>
+        <a href="https://instagram.com/laondacaxias" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          <span>@laondacaxias</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Sticky Header -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo-wrapper">
+        <img src="assets/logo.svg" alt="La Onda Massas Artesanais" class="logo-img">
+      </a>
+
+      <!-- Desktop Search Bar -->
+      <div class="header-search">
+        <i data-lucide="search"></i>
+        <input type="text" id="search-input" placeholder="Buscar massas, molhos, lasanhas..." autocomplete="off">
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <a href="https://wa.me/5554999917779" target="_blank" rel="noopener" class="btn-header-wa">
+          <i data-lucide="message-circle"></i>
+          <span>WhatsApp</span>
+        </a>
+        <button id="btn-open-cart" class="cart-btn-header" aria-label="Abrir Pedido">
+          <i data-lucide="shopping-bag"></i>
+          <span>Pedido</span>
+          <span id="cart-badge" class="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Search Strip -->
+  <div class="container mobile-search-section">
+    <div class="mobile-search-wrapper">
+      <i data-lucide="search"></i>
+      <input type="text" id="search-input-mobile" class="mobile-search-input" placeholder="Buscar no cardápio La Onda..." autocomplete="off">
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-pattern"></div>
+    <div class="container hero-content">
+      <div class="hero-text-col">
+        <div class="hero-tag">
+          <i data-lucide="sparkles"></i>
+          <span>Tradição & Alta Culinária Italiana</span>
+        </div>
+        <h1 class="hero-title">
+          O verdadeiro sabor das <span class="highlight">massas artesanais</span> na sua mesa.
+        </h1>
+        <p class="hero-desc">
+          Tortéis coloniais recheados na hora, nhoques grano duro aerados, lasanhas nobres de forno e molhos especiais com até 8h de apuração. Peça direto no WhatsApp sem taxas abusivas!
+        </p>
+
+        <div class="hero-badges">
+          <div class="hero-pill">
+            <i data-lucide="award"></i>
+            <span>Farinha Grano Duro 100%</span>
+          </div>
+          <div class="hero-pill">
+            <i data-lucide="check-circle"></i>
+            <span>Sem Conservantes</span>
+          </div>
+          <div class="hero-pill">
+            <i data-lucide="truck"></i>
+            <span>Tele-Entrega em Caxias</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#cardapio" class="btn-primary-hero">
+            <i data-lucide="utensils"></i>
+            <span>Explorar Cardápio</span>
+          </a>
+          <a href="https://wa.me/5554999917779" target="_blank" rel="noopener" class="btn-secondary-hero">
+            <i data-lucide="message-square"></i>
+            <span>Falar no WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Showcase Card -->
+      <div class="hero-card-showcase">
+        <div class="showcase-header">
+          <span class="showcase-title">Destaques da Cantina</span>
+          <div class="showcase-rating">
+            <i data-lucide="star" style="fill: #F59E0B; stroke: #F59E0B; width: 14px; height: 14px;"></i>
+            <span>4.9 Avaliações</span>
+          </div>
+        </div>
+        <div class="showcase-items">
+          <div class="showcase-item">
+            <div class="showcase-item-icon">
+              <i data-lucide="sparkles"></i>
+            </div>
+            <div class="showcase-item-info">
+              <div class="showcase-item-name">Tortéi de Moranga Artesanal</div>
+              <div class="showcase-item-sub">Bandeja 500g / 1kg • Recheio Colonial</div>
+            </div>
+            <div class="showcase-item-price">R$ 26,00</div>
+          </div>
+
+          <div class="showcase-item">
+            <div class="showcase-item-icon" style="background: #991B1B;">
+              <i data-lucide="flame"></i>
+            </div>
+            <div class="showcase-item-info">
+              <div class="showcase-item-name">Molho Bolonhesa 8 Horas</div>
+              <div class="showcase-item-sub">Pote 500g / 1kg • Carne Nobre</div>
+            </div>
+            <div class="showcase-item-price">R$ 24,00</div>
+          </div>
+
+          <div class="showcase-item">
+            <div class="showcase-item-icon" style="background: #B45309;">
+              <i data-lucide="chef-hat"></i>
+            </div>
+            <div class="showcase-item-info">
+              <div class="showcase-item-name">Bife à Parmegiana Gratinado</div>
+              <div class="showcase-item-sub">Individual & Família • Forno</div>
+            </div>
+            <div class="showcase-item-price">R$ 38,00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Categories Navigation Strip -->
+  <nav class="categories-strip" id="cardapio">
+    <div class="container">
+      <div class="categories-scroll" id="categories-container">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Catalog Grid -->
+  <main class="catalog-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2>Cardápio de Massas & Pratos</h2>
+          <p id="products-count-label">Selecione e monte seu pedido em segundos</p>
+        </div>
+      </div>
+
+      <div class="products-grid" id="products-grid">
+        <!-- Products rendered via JS -->
+      </div>
+    </div>
+  </main>
+
+  <!-- About & Tradition Section -->
+  <section class="about-section">
+    <div class="container about-grid">
+      <div class="about-text">
+        <div class="hero-tag" style="background: rgba(127, 29, 29, 0.08); border-color: rgba(127, 29, 29, 0.2); color: var(--primary);">
+          <i data-lucide="map-pin"></i>
+          <span>Caxias do Sul • Serra Gaúcha</span>
+        </div>
+        <h3>Herança italiana com receita de família e preparo artesanal.</h3>
+        <p>
+          Na <strong>La Onda</strong>, cada massa é produzida respeitando o tempo de maturação e a textura perfeita da farinha grano duro. Não utilizamos conservantes industriais ou espessantes artificiais.
+        </p>
+        <p>
+          Nosso objetivo é proporcionar a você a experiência autêntica de um almoço de domingo italiano: prático para aquecer em casa, com molhos apurados lentamente e recheios abundantes.
+        </p>
+
+        <div class="about-features">
+          <div class="about-feat-item">
+            <i data-lucide="check-circle-2"></i>
+            <div>
+              <h4>Produção Diária</h4>
+              <p>Massas frescas feitas todos os dias na casa.</p>
+            </div>
+          </div>
+          <div class="about-feat-item">
+            <i data-lucide="check-circle-2"></i>
+            <div>
+              <h4>Opção Congelada</h4>
+              <p>Pronto para estocar no freezer e preparar quando quiser.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-card-info">
+        <div class="info-item-row">
+          <div class="info-icon-box">
+            <i data-lucide="map-pin"></i>
+          </div>
+          <div class="info-details">
+            <h4>Endereço de Retirada</h4>
+            <p>Rua Tronca, 3184 – Bairro Rio Branco<br>Caxias do Sul – RS</p>
+          </div>
+        </div>
+
+        <div class="info-item-row">
+          <div class="info-icon-box" style="background: #25D366;">
+            <i data-lucide="message-circle"></i>
+          </div>
+          <div class="info-details">
+            <h4>WhatsApp de Pedidos</h4>
+            <p>(54) 99991-7779 / (54) 99972-1777<br>Atendimento rápido e personalizado</p>
+          </div>
+        </div>
+
+        <div class="info-item-row">
+          <div class="info-icon-box" style="background: var(--accent);">
+            <i data-lucide="clock"></i>
+          </div>
+          <div class="info-details">
+            <h4>Horário de Atendimento</h4>
+            <p>Terça a Domingo: 09h às 21h<br>Tele-entrega e retirada no balcão</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>LA ONDA</h4>
+          <p>Massas Artesanais, Molhos Coloniais & Pratos Prontos de alta gastronomia italiana em Caxias do Sul.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navegação</h5>
+          <ul class="footer-links">
+            <li><a href="#cardapio">Cardápio Completo</a></li>
+            <li><a href="https://wa.me/5554999917779" target="_blank" rel="noopener">Fazer Pedido</a></li>
+            <li><a href="proposta.html">Proposta Comercial</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Atendimento</h5>
+          <ul class="footer-links">
+            <li><a href="https://wa.me/5554999917779" target="_blank" rel="noopener">(54) 99991-7779</a></li>
+            <li><a href="https://instagram.com/laondacaxias" target="_blank" rel="noopener">@laondacaxias</a></li>
+            <li>Rua Tronca, 3184 – Caxias do Sul</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 La Onda Massas Artesanais. Todos os direitos reservados.</span>
+        <span>Desenvolvido com tecnologia de alta conversão por <a href="proposta.html">Onira Labs</a>.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Product Customization Modal -->
+  <div id="product-modal" class="modal-backdrop">
+    <div class="modal-container">
+      <button id="modal-close" class="modal-close-btn" aria-label="Fechar Modal">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="modal-img-wrap">
+        <img id="modal-product-img" src="" alt="Prato" class="modal-img">
+      </div>
+      <div class="modal-body">
+        <h3 id="modal-product-title" class="modal-title">Título do Prato</h3>
+        <p id="modal-product-desc" class="modal-desc">Descrição detalhada do prato.</p>
+
+        <!-- Portions Selector -->
+        <div class="modal-section">
+          <div class="modal-section-title">
+            <span>Escolha a Porção</span>
+            <span class="tag">Obrigatório</span>
+          </div>
+          <div id="modal-portions-container" class="portion-options-grid">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+        <!-- State Selector (Fresco vs Congelado) -->
+        <div id="modal-state-container" class="modal-section">
+          <!-- Rendered via JS -->
+        </div>
+
+        <!-- Observations -->
+        <div class="modal-section">
+          <div class="modal-section-title">
+            <span>Observações do Prato</span>
+            <span style="font-size: 0.72rem; color: #9CA3AF;">Opcional</span>
+          </div>
+          <textarea id="modal-obs" class="obs-textarea" placeholder="Ex: Molho à parte, bem gratinado, etc."></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <div class="qty-counter">
+            <button id="modal-qty-minus" class="btn-qty">-</button>
+            <span id="modal-qty-val" class="qty-value">1</span>
+            <button id="modal-qty-plus" class="btn-qty">+</button>
+          </div>
+          <button id="btn-modal-add-cart" class="btn-confirm-add">
+            <i data-lucide="shopping-bag"></i>
+            <span>Adicionar ao Pedido</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART DRAWER — MASTER STYLE CLAEM (CONVENÇÃO ONIRA LABS) -->
+  <div id="cart-overlay" class="cart-overlay"></div>
+  <aside id="cart-drawer" class="cart-drawer">
+    <!-- Header -->
+    <div class="cart-header">
+      <div class="cart-header-top">
+        <div class="cart-header-title">
+          <i data-lucide="shopping-bag" style="color: var(--accent-light);"></i>
+          <span>Seu Pedido</span>
+        </div>
+        <button id="btn-close-cart" class="cart-close-icon-btn" aria-label="Fechar Gaveta">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <!-- Orange Return Button "Continuar Escolhendo" (MANDATÓRIO CONVENÇÃO) -->
+      <button id="btn-continue-shopping" class="btn-continue-shopping">
+        <i data-lucide="arrow-left"></i>
+        <span>Continuar Escolhendo</span>
+      </button>
+    </div>
+
+    <!-- Unified Scroll Container -->
+    <div class="cart-body">
+      <!-- Expanding Items List (4+ items fit smoothly) -->
+      <div id="cart-items-list" class="cart-items-container">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- Delivery / Pickup Switcher -->
+      <div class="cart-section-box">
+        <div class="cart-section-title">
+          <i data-lucide="truck"></i>
+          <span>Forma de Recebimento</span>
+        </div>
+        <div class="delivery-options-grid">
+          <button id="btn-type-delivery" class="delivery-type-btn active">
+            <i data-lucide="home"></i> Tele-Entrega (+R$ 10)
+          </button>
+          <button id="btn-type-pickup" class="delivery-type-btn">
+            <i data-lucide="store"></i> Retirada no Balcão
+          </button>
+        </div>
+
+        <div class="form-group-clean">
+          <label for="customer-name">Seu Nome Completo:</label>
+          <input type="text" id="customer-name" class="form-input-dark" placeholder="Ex: Maria Rossi" autocomplete="name">
+        </div>
+
+        <div id="delivery-address-group" class="form-group-clean">
+          <label for="customer-address">Endereço Completo de Entrega:</label>
+          <input type="text" id="customer-address" class="form-input-dark" placeholder="Rua, número, apto e bairro" autocomplete="street-address">
+        </div>
+      </div>
+
+      <!-- Payment Method -->
+      <div class="cart-section-box">
+        <div class="cart-section-title">
+          <i data-lucide="credit-card"></i>
+          <span>Forma de Pagamento</span>
+        </div>
+        <div class="payment-options-grid">
+          <button id="pay-pix" class="payment-type-btn active">Pix</button>
+          <button id="pay-card" class="payment-type-btn">Cartão</button>
+          <button id="pay-cash" class="payment-type-btn">Dinheiro</button>
+        </div>
+
+        <!-- Pix Helper Box -->
+        <div id="pix-helper-box">
+          <button id="btn-copy-pix" class="btn-pix-copy">
+            <i data-lucide="copy"></i>
+            <span>Copiar Chave Pix (54999917779)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Footer & WhatsApp Submission -->
+    <div id="cart-footer-section" class="cart-footer">
+      <div class="cart-total-row" style="display: none;" id="cart-delivery-row">
+        <span class="cart-total-label">Taxa de Entrega:</span>
+        <span id="cart-delivery-val" style="color: #F8FAFC; font-weight: 700;">R$ 10,00</span>
+      </div>
+      <div class="cart-total-row">
+        <span class="cart-total-label">Subtotal dos Itens:</span>
+        <span id="cart-subtotal-val" style="color: #F8FAFC; font-weight: 700;">R$ 0,00</span>
+      </div>
+      <div class="cart-total-row" style="padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.15);">
+        <span class="cart-total-label" style="color: #FFFFFF; font-weight: 800;">Total do Pedido:</span>
+        <!-- Total in Emerald Green (MANDATÓRIO CONVENÇÃO) -->
+        <span id="cart-total-val" class="cart-total-value">R$ 0,00</span>
+      </div>
+
+      <button id="btn-submit-order" class="btn-submit-order-wa">
+        <i data-lucide="message-circle"></i>
+        <span>Enviar Pedido no WhatsApp</span>
+      </button>
+
+      <!-- Signature with Bright Yellow (MANDATÓRIO CONVENÇÃO) -->
+      <div class="cart-signature">
+        Tecnologia por <span class="onira-brand">Onira Labs</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Floating Proposal Widget (.onira-cta) (MANDATÓRIO CONVENÇÃO) -->
+  <div id="onira-cta" class="onira-cta">
+    <img src="assets/jeff-avatar.webp" alt="Jeff Motta" class="onira-cta-avatar">
+    <a href="proposta.html" class="onira-cta-content">
+      <span class="onira-cta-hook">Gostou do cardápio?</span>
+      <span class="onira-cta-call">Saiba como funciona meu trabalho</span>
+    </a>
+    <button id="onira-cta-close" class="onira-cta-close" aria-label="Fechar Convite">
+      <i data-lucide="x" style="width: 16px; height: 16px;"></i>
+    </button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

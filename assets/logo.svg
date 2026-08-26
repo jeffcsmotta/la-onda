@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" width="100%" height="100%">
+  <defs>
+    <linearGradient id="laOndaGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="50%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#B45309" />
+    </linearGradient>
+    <linearGradient id="laOndaRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#991B1B" />
+      <stop offset="100%" stop-color="#7F1D1D" />
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#D97706" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Emblem Icon on Left -->
+  <g transform="translate(15, 10)">
+    <!-- Outer Shield / Circle -->
+    <circle cx="50" cy="50" r="46" fill="url(#laOndaRed)" stroke="url(#laOndaGold)" stroke-width="2.5"/>
+    <circle cx="50" cy="50" r="41" fill="none" stroke="rgba(245, 158, 11, 0.35)" stroke-width="1" stroke-dasharray="3,3"/>
+    
+    <!-- Stylized Wheat / Pasta Silhouette -->
+    <path d="M50 20 C50 35 34 42 34 56 C34 66 42 74 50 82 C58 74 66 66 66 56 C66 42 50 35 50 20 Z" fill="url(#laOndaGold)" opacity="0.95"/>
+    <path d="M50 32 L50 76" stroke="#7F1D1D" stroke-width="2" stroke-linecap="round"/>
+    <path d="M42 46 Q50 50 58 46" stroke="#7F1D1D" stroke-width="1.8" fill="none"/>
+    <path d="M40 56 Q50 60 60 56" stroke="#7F1D1D" stroke-width="1.8" fill="none"/>
+    <path d="M44 66 Q50 70 56 66" stroke="#7F1D1D" stroke-width="1.8" fill="none"/>
+
+    <!-- Small Star -->
+    <polygon points="50,12 52,17 57,17 53,20 55,25 50,22 45,25 47,20 43,17 48,17" fill="#F59E0B"/>
+  </g>
+
+  <!-- Brand Typography -->
+  <g transform="translate(125, 20)">
+    <!-- Subtitle Top -->
+    <text x="0" y="22" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="3.5" fill="#D97706" text-transform="uppercase">
+      TRADICIONAL CANTINA ITALIANA
+    </text>
+
+    <!-- Main Title -->
+    <text x="0" y="58" font-family="'Outfit', system-ui, sans-serif" font-size="40" font-weight="900" letter-spacing="1.5" fill="#1C1917" filter="url(#softGlow)">
+      LA ONDA
+    </text>
+
+    <!-- Category Tagline -->
+    <text x="0" y="80" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11.5" font-weight="600" letter-spacing="1.8" fill="#78716C">
+      MASSAS ARTESANAIS • MOLHOS • PRATOS PRONTOS
+    </text>
+
+    <!-- Decorative Line -->
+    <rect x="0" y="88" width="270" height="2" fill="url(#laOndaGold)" rx="1"/>
+  </g>
+</svg>
