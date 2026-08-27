@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proposta Comercial Onira.fly — La Onda Massas Artesanais</title>
-  <meta name="description" content="Proposta comercial e plano estratégico de canal próprio digital de alta conversão para La Onda Massas Artesanais em Caxias do Sul.">
+  <meta name="description" content="Diagnóstico estratégico e proposta de canal próprio de alta conversão para a La Onda Massas Artesanais em Caxias do Sul.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,7 +55,7 @@
     .proposal-header {
       background: #0F172A;
       color: #FFFFFF;
-      padding: 40px 0;
+      padding: 44px 0;
       border-bottom: 3px solid var(--accent);
       margin-bottom: 40px;
     }
@@ -101,7 +101,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 22px;
+      padding: 12px 24px;
       background: var(--accent);
       color: #FFFFFF;
       font-weight: 800;
@@ -148,63 +148,117 @@
       margin-bottom: 20px;
     }
 
-    /* Diagnostic Grid */
-    .diagnostic-grid {
+    /* Loss Stats Box */
+    .stats-alert-box {
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+
+    .stats-alert-box h4 {
+      color: #991B1B;
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .loss-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 16px;
-      margin: 24px 0;
+      margin-top: 16px;
     }
 
     @media (min-width: 768px) {
-      .diagnostic-grid {
-        grid-template-columns: 1fr 1fr;
+      .loss-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
-    .diag-box {
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid;
+    .loss-item {
+      background: #FFFFFF;
+      border: 1px solid #FCA5A5;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
     }
 
-    .diag-box.problem {
-      background: #FEF2F2;
-      border-color: #FECACA;
-    }
-
-    .diag-box.problem h4 {
+    .loss-number {
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      font-weight: 900;
       color: #991B1B;
-      font-size: 0.95rem;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .loss-label {
+      font-size: 0.8rem;
+      color: #64748B;
+      font-weight: 600;
+    }
+
+    /* Comparison Table */
+    .table-container {
+      overflow-x: auto;
+      margin: 24px 0;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .compare-table th, .compare-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table th {
+      background: #F8FAFC;
       font-weight: 800;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      color: var(--text-main);
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
     }
 
-    .diag-box.solution {
-      background: #F0FDF4;
-      border-color: #BBF7D0;
+    .compare-table th.highlight-th {
+      background: #FEF3C7;
+      color: #B45309;
+      border-top: 2px solid var(--accent);
     }
 
-    .diag-box.solution h4 {
-      color: #166534;
-      font-size: 0.95rem;
+    .compare-table td.highlight-td {
+      background: #FFFBEB;
+      font-weight: 700;
+      color: #92400E;
+    }
+
+    .badge-check {
+      color: var(--success);
       font-weight: 800;
-      margin-bottom: 8px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
     }
 
-    .diag-box p {
-      font-size: 0.88rem;
-      color: #475569;
-      line-height: 1.5;
+    .badge-cross {
+      color: #991B1B;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
-    /* Pillars List */
+    /* Diagnostic Pillars Grid */
     .pillars-list {
       display: grid;
       grid-template-columns: 1fr;
@@ -222,7 +276,7 @@
       background: var(--bg-page);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 20px;
+      padding: 22px;
       text-align: center;
     }
 
@@ -451,7 +505,7 @@
       background: rgba(255, 255, 255, 0.04);
       border-left: 3px solid var(--accent);
       border-radius: 0 6px 6px 0;
-      padding: 12px 14px 12px 16px;
+      padding: 14px 16px;
       font-style: italic;
       font-size: 0.93rem;
       color: #E2E8F0;
@@ -574,7 +628,7 @@
           <span>Diagnóstico Estratégico Onira.fly</span>
         </div>
         <h1 class="proposal-title">Canal Próprio de Vendas • La Onda</h1>
-        <p class="proposal-subtitle">Proposta comercial personalizada para La Onda Massas Artesanais & Pratos Prontos</p>
+        <p class="proposal-subtitle">Como eliminar a mordida dos intermediários e transformar o WhatsApp em uma máquina direta de pedidos</p>
       </div>
 
       <div>
@@ -587,70 +641,154 @@
   </header>
 
   <main class="container">
-    <!-- Card 1: Diagnóstico Atual -->
+
+    <!-- Card 1: A Realidade Financeira dos Marketplaces -->
     <div class="proposal-card">
       <h2 class="card-title">
-        <i data-lucide="activity"></i>
-        <span>1. Oportunidade Identificada na La Onda</span>
+        <i data-lucide="trending-down"></i>
+        <span>1. O Custo Oculto dos Marketplaces (iFood, etc.)</span>
       </h2>
       <p class="lead-p">
-        A <strong>La Onda</strong> possui uma reputação consolidada em Caxias do Sul com massas nobres e pratos de alto valor agregado (tortéis, nhoques grano duro, lasanhas, bife à parmegiana).
+        Restaurantes gastronômicos e cantinas artesanais como a <strong>La Onda</strong> produzem pratos com ingredientes de alto padrão (nhoques grano duro, tortéis artesanais, lasanhas e molhos nobres). No entanto, grande parte da sua margem de lucro líquido é drenada por taxas de plataformas terceirizadas:
       </p>
 
-      <div class="diagnostic-grid">
-        <div class="diag-box problem">
-          <h4><i data-lucide="alert-circle"></i> O Cenário Atual</h4>
-          <p>O cliente quer encomendar o almoço ou estocar massas no freezer, mas se depara com menus em PDF difíceis de ler no celular, dependência de marketplaces que cobram até 27% de comissão ou espera no WhatsApp sem um cardápio estruturado.</p>
-        </div>
-
-        <div class="diag-box solution">
-          <h4><i data-lucide="check-circle-2"></i> A Solução Onira.fly</h4>
-          <p>Um cardápio web ultra rápido (<1s de abertura), sem necessidade de cadastro ou download de app. O cliente escolhe as massas, molhos e porções (500g/1kg, fresco ou congelado) e o pedido chega pronto para produção no WhatsApp oficial.</p>
+      <div class="stats-alert-box">
+        <h4><i data-lucide="alert-triangle"></i> As Taxas que Drenam a Margem da La Onda:</h4>
+        <div class="loss-grid">
+          <div class="loss-item">
+            <div class="loss-number">12% a 27%</div>
+            <div class="loss-label">Comissão por cada pedido vendido no aplicativo</div>
+          </div>
+          <div class="loss-item">
+            <div class="loss-number">+ 3,2%</div>
+            <div class="loss-label">Taxa de transação no pagamento online do app</div>
+          </div>
+          <div class="loss-item">
+            <div class="loss-number">R$ 3.500+</div>
+            <div class="loss-label">Perda mensal média a cada R$ 20.000 em vendas</div>
+          </div>
         </div>
       </div>
+
+      <p style="font-size: 0.95rem; color: #475569; margin-top: 14px;">
+        Em um ano, uma operação que fatura R$ 30.000/mês pode deixar <strong>mais de R$ 70.000 a R$ 90.000 apenas em taxas para intermediários</strong> — sem contar que os clientes passam a ser "clientes do aplicativo", e não clientes fiéis da La Onda.
+      </p>
     </div>
 
-    <!-- Card 2: Os 3 Pilares da Arquitetura -->
+    <!-- Card 2: Por que Criar um App/E-commerce do Zero é Inviável -->
     <div class="proposal-card">
       <h2 class="card-title">
-        <i data-lucide="cpu"></i>
-        <span>2. Diferenciais de Alta Conversão</span>
+        <i data-lucide="help-circle"></i>
+        <span>2. O Dilema de Desenvolver um Canal Próprio Tradicional</span>
       </h2>
+      <p class="lead-p">
+        Muitos estabelecimentos tentam resolver isso contratando agências ou software houses tradicionais, mas encontram barreiras que inviabilizam o projeto:
+      </p>
+
       <div class="pillars-list">
-        <div class="pillar-item">
-          <div class="pillar-icon">
-            <i data-lucide="zap"></i>
-          </div>
-          <h4>Zero Atrito</h4>
-          <p>O cliente não perde tempo criando senha nem baixando app. Abre instantaneamente no link da bio do Instagram ou Google.</p>
-        </div>
-
-        <div class="pillar-item">
-          <div class="pillar-icon">
-            <i data-lucide="file-text"></i>
-          </div>
-          <h4>Comanda Limpa</h4>
-          <p>O operador de balcão e a cozinha recebem o pedido 100% organizado no WhatsApp, item a item com porção, ponto e endereço.</p>
-        </div>
-
         <div class="pillar-item">
           <div class="pillar-icon">
             <i data-lucide="dollar-sign"></i>
           </div>
-          <h4>0% de Comissão</h4>
-          <p>100% da margem das suas massas artesanais fica no caixa da La Onda. Zero taxas percentuais por pedido.</p>
+          <h4>Custo de R$ 10k a R$ 25k</h4>
+          <p>Investimento inicial pesado em desenvolvimento sob medida, servidores dedicados e suporte contínuo de TI.</p>
+        </div>
+
+        <div class="pillar-item">
+          <div class="pillar-icon">
+            <i data-lucide="clock"></i>
+          </div>
+          <h4>Meses de Atraso</h4>
+          <p>Projetos lentos que levam de 3 a 6 meses para sair do papel, com testes complexos e reuniões intermináveis.</p>
+        </div>
+
+        <div class="pillar-item">
+          <div class="pillar-icon">
+            <i data-lucide="download"></i>
+          </div>
+          <h4>Barreira de Download</h4>
+          <p>O cliente odeia baixar apps pesados na Play Store/App Store ou criar cadastros com senhas. Mais de 90% desistem no meio.</p>
         </div>
       </div>
     </div>
 
-    <!-- Card 3: Planos de Investimento (SEM VERMELHO EM PREÇOS) -->
+    <!-- Card 3: Como a Onira.fly Resolve e Simplifica Tudo -->
     <div class="proposal-card">
       <h2 class="card-title">
-        <i data-lucide="trending-up"></i>
-        <span>3. Condições Comerciais & Planos</span>
+        <i data-lucide="zap"></i>
+        <span>3. A Solução Onira.fly: O Atalho Direto de Alta Velocidade</span>
       </h2>
       <p class="lead-p">
-        Modelos simples e transparentes de implantação com infraestrutura Cloudflare Pages e manutenção contínua:
+        O <strong>Onira.fly</strong> foi projetado especificamente para restaurantes e negócios gastronômicos locais eliminarem os intermediários sem complexidade técnica:
+      </p>
+
+      <div class="table-container">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Critério</th>
+              <th>Marketplace (iFood)</th>
+              <th>App Próprio Tradicional</th>
+              <th class="highlight-th">Onira.fly (La Onda)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Comissão por Pedido</strong></td>
+              <td><span class="badge-cross">15% a 27% por venda</span></td>
+              <td><span class="badge-check">0%</span></td>
+              <td class="highlight-td"><span class="badge-check">0% (100% de lucro no caixa)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Custo de Implantação (Setup)</strong></td>
+              <td>R$ 0</td>
+              <td><span class="badge-cross">R$ 10.000 a R$ 25.000</span></td>
+              <td class="highlight-td"><span class="badge-check">R$ 0 (Isento na adesão)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Tempo para Estar no Ar</strong></td>
+              <td>15 a 30 dias</td>
+              <td><span class="badge-cross">3 a 6 meses</span></td>
+              <td class="highlight-td"><span class="badge-check">Menos de 48 horas</span></td>
+            </tr>
+            <tr>
+              <td><strong>Atrito para o Cliente</strong></td>
+              <td>Concorrentes ao lado</td>
+              <td><span class="badge-cross">Exige download e senha</span></td>
+              <td class="highlight-td"><span class="badge-check">Abre em <1s sem cadastro</span></td>
+            </tr>
+            <tr>
+              <td><strong>Chegada do Pedido</strong></td>
+              <td>Painel separado / extrato</td>
+              <td>Painel complexo</td>
+              <td class="highlight-td"><span class="badge-check">Comanda limpa no WhatsApp oficial</span></td>
+            </tr>
+            <tr>
+              <td><strong>Custo de Manutenção</strong></td>
+              <td>Mensalidade + % das vendas</td>
+              <td>R$ 500 a R$ 1.500/mês</td>
+              <td class="highlight-td"><span class="badge-check">Apenas R$ 100/mês fixo</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stats-alert-box" style="background: #F0FDF4; border-color: #BBF7D0;">
+        <h4 style="color: #166534;"><i data-lucide="check-circle-2"></i> A Matemática do Retorno Imediato:</h4>
+        <p style="color: #15803D; font-size: 0.92rem;">
+          Com apenas <strong>2 a 3 pedidos diretos por semana</strong> feitos pelo canal Onira.fly em vez do marketplace, a economia de comissões já paga integralmente o custo mensal do serviço. Todo o restante é margem limpa no bolso da La Onda!
+        </p>
+      </div>
+    </div>
+
+    <!-- Card 4: Planos Comerciais (SEM VERMELHO EM PREÇOS) -->
+    <div class="proposal-card">
+      <h2 class="card-title">
+        <i data-lucide="dollar-sign"></i>
+        <span>4. Planos de Ativação & Manutenção</span>
+      </h2>
+      <p class="lead-p">
+        Planos claros, sem surpresas e com manutenção técnica contínua inclusa:
       </p>
 
       <div class="pricing-grid">
@@ -658,15 +796,17 @@
         <div class="price-card">
           <div>
             <h3 class="price-name">Plano Base Onira.fly</h3>
-            <p class="price-desc">Canal próprio completo com cardápio interativo e pedidos ilimitados no WhatsApp.</p>
+            <p class="price-desc">Canal próprio completo, cardápio digital responsivo e pedidos ilimitados direto no WhatsApp.</p>
             <div class="price-tag-value">R$ 100<span style="font-size: 1.1rem; color: var(--text-muted); font-weight: 600;">/mês</span></div>
-            <div class="price-period">Sem taxa de setup inicial na adesão antecipada</div>
+            <div class="price-period">Zero taxa de setup na ativação antecipada</div>
 
             <ul class="price-features">
-              <li><i data-lucide="check"></i> Web App rápido de pedidos direto no WhatsApp</li>
-              <li><i data-lucide="check"></i> Hospedagem de alta velocidade e SSL gratuito</li>
-              <li><i data-lucide="check"></i> Atualizações mensais de preços e fotos</li>
-              <li><i data-lucide="check"></i> Suporte técnico via WhatsApp</li>
+              <li><i data-lucide="check"></i> Web App ultra rápido (<1s) sem download de app</li>
+              <li><i data-lucide="check"></i> Hospedagem de alta velocidade e certificado SSL</li>
+              <li><i data-lucide="check"></i> Cardápio completo com porções e cálculo automático</li>
+              <li><i data-lucide="check"></i> Comanda limpa de despacho no WhatsApp oficial</li>
+              <li><i data-lucide="check"></i> Atualizações mensais de preços e novos pratos</li>
+              <li><i data-lucide="check"></i> Suporte técnico direto via WhatsApp</li>
             </ul>
           </div>
 
@@ -680,16 +820,17 @@
           <span class="price-badge-top">Recomendado</span>
           <div>
             <h3 class="price-name">Acelerador Local & Google</h3>
-            <p class="price-desc">Plano completo + Otimização Google Meu Negócio e campanhas locais de atração.</p>
+            <p class="price-desc">Plano completo + Otimização Google Meu Negócio e campanhas locais para atrair novos clientes.</p>
             <div class="price-tag-value">R$ 300<span style="font-size: 1.1rem; color: var(--text-muted); font-weight: 600;">/mês</span></div>
-            <div class="price-period">Contrato de 12 meses com gestão contínua</div>
+            <div class="price-period">Gestão contínua de presença e tráfego local</div>
 
             <ul class="price-features">
               <li><i data-lucide="check"></i> Tudo incluído no Plano Base</li>
               <li><i data-lucide="check"></i> Otimização completa do Google Meu Negócio</li>
-              <li><i data-lucide="check"></i> Estratégia de busca local para "massas em Caxias"</li>
-              <li><i data-lucide="check"></i> Domínio próprio (.com.br) configurado</li>
-              <li><i data-lucide="check"></i> Suporte prioritário com Jeff Motta</li>
+              <li><i data-lucide="check"></i> Estratégia de busca para "massas em Caxias do Sul"</li>
+              <li><i data-lucide="check"></i> Domínio próprio (.com.br) configurado com DNS rápido</li>
+              <li><i data-lucide="check"></i> Relatório mensal de performance e cliques</li>
+              <li><i data-lucide="check"></i> Atendimento e consultoria prioritária com Jeff Motta</li>
             </ul>
           </div>
 

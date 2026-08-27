@@ -407,6 +407,7 @@ function formatBRL(value) {
 document.addEventListener('DOMContentLoaded', () => {
   loadCartFromStorage();
   renderCategories();
+  renderHighlights();
   renderProducts();
   setupEventListeners();
   setupFloatingCTA();
@@ -425,6 +426,7 @@ function setupEventListeners() {
   if (searchInputDesktop) {
     searchInputDesktop.addEventListener('input', (e) => {
       searchQuery = e.target.value.toLowerCase().trim();
+      renderHighlights();
       renderProducts();
     });
   }
@@ -434,6 +436,7 @@ function setupEventListeners() {
   if (searchInputMobile) {
     searchInputMobile.addEventListener('input', (e) => {
       searchQuery = e.target.value.toLowerCase().trim();
+      renderHighlights();
       renderProducts();
     });
   }
@@ -596,10 +599,55 @@ function renderCategories() {
   if (window.lucide) window.lucide.createIcons();
 }
 
+// Render Priority Highlights (⭐ Destaques & Mais Pedidos)
+function renderHighlights() {
+  const grid = document.getElementById('highlights-grid');
+  const section = document.getElementById('destaques-section');
+  if (!grid) return;
+
+  const highlightIds = ['nhoque-noccioli', 'pizza-camarao', 'lasanha-bolonhesa', 'tortei-artesanal'];
+  const highlightProducts = highlightIds.map(id => PRODUCTS_DATA.find(p => p.id === id)).filter(Boolean);
+
+  if (searchQuery || currentCategory !== 'all') {
+    if (section) section.style.display = 'none';
+    return;
+  } else {
+    if (section) section.style.display = 'block';
+  }
+
+  grid.innerHTML = highlightProducts.map(product => {
+    const defaultPortion = product.portions[0];
+    const hasMultiplePortions = product.portions.length > 1;
+
+    return `
+      <div class="highlight-card" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
+        <div class="highlight-card-img-wrap">
+          <img src="${product.image}" alt="${product.title}" class="highlight-card-img" loading="lazy" />
+          <span class="highlight-badge-pill">⭐ Mais Pedido</span>
+        </div>
+        <div class="highlight-card-body">
+          <h3 class="highlight-card-title">${product.title}</h3>
+          <p class="highlight-card-desc">${product.desc}</p>
+          <div class="highlight-card-footer">
+            <div class="highlight-price">${formatBRL(defaultPortion.price)}</div>
+            <button class="btn-highlight-add" onclick="event.stopPropagation(); openProductModal('${product.id}')">
+              <i data-lucide="plus"></i>
+              <span>${hasMultiplePortions ? 'Escolher' : 'Pedir'}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  if (window.lucide) window.lucide.createIcons();
+}
+
 // Change Active Category
 window.selectCategory = function(catId) {
   currentCategory = catId;
   renderCategories();
+  renderHighlights();
   renderProducts();
 };
 

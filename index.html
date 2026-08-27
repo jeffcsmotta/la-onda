@@ -124,97 +124,6 @@
     </div>
   </div>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-bg-overlay"></div>
-    <div class="hero-pattern"></div>
-    <div class="container hero-content">
-      <div class="hero-text-col">
-        <div class="hero-tag">
-          <i data-lucide="sparkles"></i>
-          <span>Tradição & Alta Culinária Italiana</span>
-        </div>
-        <h1 class="hero-title">
-          O verdadeiro sabor das <span class="highlight">massas artesanais</span> na sua mesa.
-        </h1>
-        <p class="hero-desc">
-          Tortéis coloniais recheados na hora, nhoques grano duro aerados, lasanhas nobres de forno e molhos especiais com até 8h de apuração. Peça direto no WhatsApp sem taxas abusivas!
-        </p>
-
-        <div class="hero-badges">
-          <div class="hero-pill">
-            <i data-lucide="award"></i>
-            <span>Farinha Grano Duro 100%</span>
-          </div>
-          <div class="hero-pill">
-            <i data-lucide="check-circle"></i>
-            <span>Sem Conservantes</span>
-          </div>
-          <div class="hero-pill">
-            <i data-lucide="truck"></i>
-            <span>Tele-Entrega em Caxias</span>
-          </div>
-        </div>
-
-        <div class="hero-actions">
-          <a href="#cardapio" class="btn-primary-hero">
-            <i data-lucide="utensils"></i>
-            <span>Explorar Cardápio</span>
-          </a>
-          <a href="https://wa.me/5554999917779" target="_blank" rel="noopener" class="btn-secondary-hero">
-            <i data-lucide="message-square"></i>
-            <span>Falar no WhatsApp</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Right Showcase Card -->
-      <div class="hero-card-showcase">
-        <div class="showcase-header">
-          <span class="showcase-title">Destaques da Cantina</span>
-          <div class="showcase-rating">
-            <i data-lucide="star" style="fill: #F59E0B; stroke: #F59E0B; width: 14px; height: 14px;"></i>
-            <span>4.9 Avaliações</span>
-          </div>
-        </div>
-        <div class="showcase-items">
-          <div class="showcase-item">
-            <div class="showcase-item-icon">
-              <i data-lucide="sparkles"></i>
-            </div>
-            <div class="showcase-item-info">
-              <div class="showcase-item-name">Tortéi de Moranga Artesanal</div>
-              <div class="showcase-item-sub">Bandeja 500g / 1kg • Recheio Colonial</div>
-            </div>
-            <div class="showcase-item-price">R$ 26,00</div>
-          </div>
-
-          <div class="showcase-item">
-            <div class="showcase-item-icon" style="background: #991B1B;">
-              <i data-lucide="flame"></i>
-            </div>
-            <div class="showcase-item-info">
-              <div class="showcase-item-name">Molho Bolonhesa 8 Horas</div>
-              <div class="showcase-item-sub">Pote 500g / 1kg • Carne Nobre</div>
-            </div>
-            <div class="showcase-item-price">R$ 24,00</div>
-          </div>
-
-          <div class="showcase-item">
-            <div class="showcase-item-icon" style="background: #B45309;">
-              <i data-lucide="chef-hat"></i>
-            </div>
-            <div class="showcase-item-info">
-              <div class="showcase-item-name">Bife à Parmegiana Gratinado</div>
-              <div class="showcase-item-sub">Individual & Família • Forno</div>
-            </div>
-            <div class="showcase-item-price">R$ 38,00</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Sticky Categories Navigation Strip -->
   <nav class="categories-strip" id="cardapio">
     <div class="container">
@@ -223,6 +132,24 @@
       </div>
     </div>
   </nav>
+
+  <!-- Priority Highlights Section (Destaques da Casa) -->
+  <section class="highlights-section" id="destaques-section">
+    <div class="container">
+      <div class="highlights-header">
+        <div class="highlights-badge">
+          <i data-lucide="sparkles"></i>
+          <span>Seleção Especial</span>
+        </div>
+        <h2 class="highlights-title">⭐ Destaques & Mais Pedidos da La Onda</h2>
+        <p class="highlights-subtitle">Nossas massas, pizzas e pratos campeões de pedidos em Caxias do Sul</p>
+      </div>
+
+      <div class="highlights-grid" id="highlights-grid">
+        <!-- Highlight Cards Rendered via JS -->
+      </div>
+    </div>
+  </section>
 
   <!-- Main Catalog Grid -->
   <main class="catalog-section">
@@ -399,19 +326,12 @@
   <!-- CART DRAWER — MASTER STYLE CLAEM (CONVENÇÃO ONIRA LABS) -->
   <div id="cart-overlay" class="cart-overlay"></div>
   <aside id="cart-drawer" class="cart-drawer">
-    <!-- Header -->
+    <!-- Header (Padrão CLAEM linha única) -->
     <div class="cart-header">
-      <div class="cart-header-top">
-        <div class="cart-header-title">
-          <i data-lucide="shopping-bag" style="color: var(--accent-light);"></i>
-          <span>Seu Pedido</span>
-        </div>
-        <button id="btn-close-cart" class="cart-close-icon-btn" aria-label="Fechar Gaveta">
-          <i data-lucide="x"></i>
-        </button>
+      <div class="cart-header-title">
+        <i data-lucide="shopping-bag" style="color: var(--accent-light);"></i>
+        <span>Seu Pedido</span>
       </div>
-
-      <!-- Orange Return Button "Continuar Escolhendo" (MANDATÓRIO CONVENÇÃO) -->
       <button id="btn-continue-shopping" class="btn-continue-shopping">
         <i data-lucide="arrow-left"></i>
         <span>Continuar Escolhendo</span>
