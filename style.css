@@ -1232,15 +1232,20 @@ button {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex-shrink: 0;
   overflow: visible !important;
+  overflow-y: visible !important;
+  overflow-x: visible !important;
   height: auto !important;
   max-height: none !important;
+  min-height: auto !important;
 }
 
 .cart-empty-state {
   text-align: center;
   padding: 30px 16px;
   color: var(--drawer-text-muted);
+  flex-shrink: 0;
 }
 
 .cart-empty-state i {
@@ -1262,6 +1267,8 @@ button {
   display: flex;
   gap: 12px;
   position: relative;
+  flex-shrink: 0;
+  overflow: visible;
 }
 
 .cart-item-info {
@@ -1351,6 +1358,7 @@ button {
   border: 1px solid var(--drawer-border);
   border-radius: var(--radius-md);
   padding: 16px;
+  flex-shrink: 0;
 }
 
 .cart-section-title {
