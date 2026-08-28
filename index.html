@@ -103,10 +103,13 @@
 
       <!-- Header Actions -->
       <div class="header-actions">
-        <a href="https://wa.me/5554999917779" target="_blank" rel="noopener" class="btn-header-wa">
+        <a href="https://wa.me/5554999917779" target="_blank" rel="noopener noreferrer" class="btn-header-wa">
           <i data-lucide="message-circle"></i>
           <span>WhatsApp</span>
         </a>
+        <button id="cart-clear-header" class="cart-clear-btn" onclick="window.askClearCart()" title="Limpar pedido" aria-label="Limpar pedido" style="display: none;">
+          <i data-lucide="trash-2"></i>
+        </button>
         <button id="btn-open-cart" class="cart-btn-header" aria-label="Abrir Pedido">
           <i data-lucide="shopping-bag"></i>
           <span>Pedido</span>
@@ -332,10 +335,16 @@
         <i data-lucide="shopping-bag" style="color: var(--accent-light);"></i>
         <span>Seu Pedido</span>
       </div>
-      <button id="btn-continue-shopping" class="btn-continue-shopping">
-        <i data-lucide="arrow-left"></i>
-        <span>Continuar Escolhendo</span>
-      </button>
+      <div class="cart-header-actions">
+        <button id="btn-clear-cart" class="btn-clear-cart" onclick="window.askClearCart()" title="Limpar todo o pedido" style="display: none;">
+          <i data-lucide="trash-2"></i>
+          <span>Limpar</span>
+        </button>
+        <button id="btn-continue-shopping" class="btn-continue-shopping">
+          <i data-lucide="arrow-left"></i>
+          <span>Continuar</span>
+        </button>
+      </div>
     </div>
 
     <!-- Unified Scroll Container -->
@@ -391,32 +400,32 @@
           </button>
         </div>
       </div>
-    </div>
 
-    <!-- Cart Footer & WhatsApp Submission -->
-    <div id="cart-footer-section" class="cart-footer">
-      <div class="cart-total-row" style="display: none;" id="cart-delivery-row">
-        <span class="cart-total-label">Taxa de Entrega:</span>
-        <span id="cart-delivery-val" style="color: #F8FAFC; font-weight: 700;">R$ 10,00</span>
-      </div>
-      <div class="cart-total-row">
-        <span class="cart-total-label">Subtotal dos Itens:</span>
-        <span id="cart-subtotal-val" style="color: #F8FAFC; font-weight: 700;">R$ 0,00</span>
-      </div>
-      <div class="cart-total-row" style="padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.15);">
-        <span class="cart-total-label" style="color: #FFFFFF; font-weight: 800;">Total do Pedido:</span>
-        <!-- Total in Emerald Green (MANDATÓRIO CONVENÇÃO) -->
-        <span id="cart-total-val" class="cart-total-value">R$ 0,00</span>
-      </div>
+      <!-- Cart Footer & WhatsApp Submission (INSIDE SINGLE SCROLL CONTAINER) -->
+      <div id="cart-footer-section" class="cart-footer">
+        <div class="cart-total-row" style="display: none;" id="cart-delivery-row">
+          <span class="cart-total-label">Taxa de Entrega:</span>
+          <span id="cart-delivery-val" style="color: #F8FAFC; font-weight: 700;">R$ 10,00</span>
+        </div>
+        <div class="cart-total-row">
+          <span class="cart-total-label">Subtotal dos Itens:</span>
+          <span id="cart-subtotal-val" style="color: #F8FAFC; font-weight: 700;">R$ 0,00</span>
+        </div>
+        <div class="cart-total-row" style="padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.15);">
+          <span class="cart-total-label" style="color: #FFFFFF; font-weight: 800;">Total do Pedido:</span>
+          <!-- Total in Emerald Green (MANDATÓRIO CONVENÇÃO) -->
+          <span id="cart-total-val" class="cart-total-value">R$ 0,00</span>
+        </div>
 
-      <button id="btn-submit-order" class="btn-submit-order-wa">
-        <i data-lucide="message-circle"></i>
-        <span>Enviar Pedido no WhatsApp</span>
-      </button>
+        <button id="btn-submit-order" class="btn-submit-order-wa">
+          <i data-lucide="message-circle"></i>
+          <span>Enviar Pedido no WhatsApp</span>
+        </button>
 
-      <!-- Signature with Bright Yellow (MANDATÓRIO CONVENÇÃO) -->
-      <div class="cart-signature">
-        Tecnologia por <span class="onira-brand">Onira Labs</span>
+        <!-- Signature with Bright Yellow (MANDATÓRIO CONVENÇÃO) -->
+        <div class="cart-signature">
+          Tecnologia por <span class="onira-brand">Onira Labs</span>
+        </div>
       </div>
     </div>
   </aside>
@@ -431,6 +440,22 @@
     <button id="onira-cta-close" class="onira-cta-close" aria-label="Fechar Convite">
       <i data-lucide="x" style="width: 16px; height: 16px;"></i>
     </button>
+  </div>
+
+  <!-- Modal de Confirmação: Limpar Pedido -->
+  <div id="confirm-clear" class="confirm-overlay" hidden onclick="if(event.target===this)window.closeClearModal()">
+    <div class="confirm-box" role="dialog" aria-modal="true" aria-labelledby="confirm-clear-title">
+      <div class="confirm-icon">
+        <i data-lucide="trash-2"></i>
+      </div>
+      <h3 class="confirm-title" id="confirm-clear-title">Limpar o pedido?</h3>
+      <p class="confirm-text" id="confirm-clear-text">Você vai remover todos os itens do seu pedido.</p>
+      <p class="confirm-warning">Esta ação não pode ser desfeita.</p>
+      <div class="confirm-actions">
+        <button type="button" class="confirm-btn confirm-cancel" onclick="window.closeClearModal()">Manter o pedido</button>
+        <button type="button" class="confirm-btn confirm-ok" onclick="window.confirmClearCart()">Sim, limpar tudo</button>
+      </div>
+    </div>
   </div>
 
   <script src="app.js"></script>

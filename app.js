@@ -837,12 +837,13 @@ function confirmAddFromModal() {
     quantity: modalQuantity
   };
 
+  const addedTitle = activeModalProduct.title;
   cart.push(cartItem);
   saveCartToStorage();
   updateCartUI();
   closeModal();
 
-  showToast(`✓ ${modalQuantity}x ${activeModalProduct.title} adicionado ao pedido!`);
+  showToast(`✓ ${modalQuantity}x ${addedTitle} adicionado ao pedido!`);
 }
 
 // Cart Drawer Operations
@@ -892,9 +893,19 @@ function updateCartUI() {
   const deliveryVal = document.getElementById('cart-delivery-val');
   const totalEl = document.getElementById('cart-total-val');
   const footer = document.getElementById('cart-footer-section');
+  const clearHeaderBtn = document.getElementById('cart-clear-header');
+  const clearDrawerBtn = document.getElementById('btn-clear-cart');
 
   const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   if (badge) badge.innerText = totalCount;
+
+  // Toggle Clear Buttons
+  if (clearHeaderBtn) {
+    clearHeaderBtn.style.display = totalCount > 0 ? 'inline-flex' : 'none';
+  }
+  if (clearDrawerBtn) {
+    clearDrawerBtn.style.display = totalCount > 0 ? 'inline-flex' : 'none';
+  }
 
   if (cart.length === 0) {
     if (container) {
@@ -923,11 +934,11 @@ function updateCartUI() {
           <div class="cart-item-bottom">
             <div class="cart-item-price">${formatBRL(item.unitPrice * item.quantity)}</div>
             <div class="cart-item-qty-control">
-              <button class="btn-cart-qty" onclick="updateCartItemQty('${item.id}', -1)">-</button>
+              <button class="btn-cart-qty" onclick="updateCartItemQty('${item.id}', -1)" aria-label="Diminuir">-</button>
               <span class="cart-item-qty">${item.quantity}</span>
-              <button class="btn-cart-qty" onclick="updateCartItemQty('${item.id}', 1)">+</button>
+              <button class="btn-cart-qty" onclick="updateCartItemQty('${item.id}', 1)" aria-label="Aumentar">+</button>
             </div>
-            <button class="btn-remove-item" onclick="removeCartItem('${item.id}')" title="Remover">
+            <button class="btn-remove-item" onclick="removeCartItem('${item.id}')" title="Remover" aria-label="Remover item">
               <i data-lucide="trash-2"></i>
             </button>
           </div>
@@ -978,10 +989,49 @@ function copyPixKey() {
   });
 }
 
+// Confirmation Modal & Clear Cart Functions
+function askClearCart() {
+  if (cart.length === 0) {
+    showToast('O pedido já está vazio.');
+    return;
+  }
+  const overlay = document.getElementById('confirm-clear');
+  const text = document.getElementById('confirm-clear-text');
+  const totalQty = cart.reduce((sum, i) => sum + (Number(i.quantity) || 0), 0);
+  const subtotal = cart.reduce((sum, item) => sum + (item.unitPrice * item.quantity), 0);
+
+  if (text) {
+    const itemLabel = totalQty === 1 ? '1 item' : `${totalQty} itens`;
+    text.innerHTML = `Você vai remover <strong>${itemLabel}</strong>, no valor de <strong>${formatBRL(subtotal)}</strong>.`;
+  }
+  if (overlay) {
+    overlay.hidden = false;
+    if (window.lucide) window.lucide.createIcons();
+  }
+}
+
+function closeClearModal() {
+  const overlay = document.getElementById('confirm-clear');
+  if (overlay) overlay.hidden = true;
+}
+
+function confirmClearCart() {
+  cart = [];
+  saveCartToStorage();
+  closeClearModal();
+  updateCartUI();
+  showToast('🗑️ Pedido limpo com sucesso.');
+}
+
+window.askClearCart = askClearCart;
+window.clearCart = askClearCart;
+window.closeClearModal = closeClearModal;
+window.confirmClearCart = confirmClearCart;
+
 // Submit Order via WhatsApp (PADRÃO OFICIAL COMANDA ONIRA.FLY - SEÇÃO 11)
 function submitOrderViaWhatsApp() {
   if (cart.length === 0) {
-    showToast('Adicione ao menos um item ao pedido.');
+    showToast('🥟 Adicione ao menos um item ao pedido.');
     return;
   }
 
@@ -991,15 +1041,14 @@ function submitOrderViaWhatsApp() {
   const customerName = nameInput?.value.trim() || '';
   const customerAddress = addressInput?.value.trim() || '';
 
-  if (!customerName) {
-    showToast('Por favor, informe seu nome para o pedido.');
-    nameInput?.focus();
-    return;
-  }
-
   if (deliveryType === 'entrega' && !customerAddress) {
-    showToast('Por favor, informe o endereço completo de entrega.');
-    addressInput?.focus();
+    showToast('📍 Por favor, informe o endereço completo de entrega.');
+    if (addressInput) {
+      addressInput.classList.add('input-error');
+      addressInput.focus();
+      addressInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => addressInput.classList.remove('input-error'), 3500);
+    }
     return;
   }
 
@@ -1029,14 +1078,17 @@ function submitOrderViaWhatsApp() {
   text += `*Itens: ${formatBRL(subtotal)}*\n`;
   if (deliveryType === 'entrega') {
     text += `Entrega: ${formatBRL(delivery)}\n`;
+    text += `*Total: ${formatBRL(total)}*\n\n`;
   } else {
     text += `Entrega: Retirada no Balcão (Grátis)\n`;
+    text += `*Total: ${formatBRL(subtotal)}*\n\n`;
   }
-  text += `*Total: ${formatBRL(total)}*\n\n`;
 
   // Customer & Payment Details
-  text += `*${customerName}*\n`;
-  if (deliveryType === 'entrega') {
+  if (customerName) {
+    text += `*${customerName}*\n`;
+  }
+  if (deliveryType === 'entrega' && customerAddress) {
     text += `${customerAddress}\n`;
   }
 
@@ -1051,8 +1103,14 @@ function submitOrderViaWhatsApp() {
   text += `_Enviado pelo site da ${CLIENT_CONFIG.name}_`;
 
   const waUrl = `https://wa.me/${CLIENT_CONFIG.whatsapp}?text=${encodeURIComponent(text)}`;
-  window.open(waUrl, '_blank');
+  
+  // Safe navigation with fallback for popup blockers
+  const win = window.open(waUrl, '_blank');
+  if (!win || win.closed || typeof win.closed === 'undefined') {
+    window.location.href = waUrl;
+  }
 }
+window.submitOrderViaWhatsApp = submitOrderViaWhatsApp;
 
 // LocalStorage Cart Persistence
 function saveCartToStorage() {
