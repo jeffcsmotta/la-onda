@@ -895,6 +895,10 @@ function updateCartUI() {
   const footer = document.getElementById('cart-footer-section');
   const clearHeaderBtn = document.getElementById('cart-clear-header');
   const clearDrawerBtn = document.getElementById('btn-clear-cart');
+  const clearFloatingBtn = document.getElementById('cart-clear-floating');
+  const floatingBar = document.getElementById('floating-cart-bar');
+  const floatingCount = document.getElementById('floating-cart-count');
+  const floatingTotal = document.getElementById('floating-cart-total');
 
   const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   if (badge) badge.innerText = totalCount;
@@ -905,6 +909,17 @@ function updateCartUI() {
   }
   if (clearDrawerBtn) {
     clearDrawerBtn.style.display = totalCount > 0 ? 'inline-flex' : 'none';
+  }
+  if (clearFloatingBtn) {
+    clearFloatingBtn.style.display = totalCount > 0 ? 'inline-flex' : 'none';
+  }
+
+  // Floating Mobile Order Bar
+  if (floatingBar) {
+    floatingBar.classList.toggle('visible', totalCount > 0);
+  }
+  if (floatingCount) {
+    floatingCount.innerText = `${totalCount} ${totalCount === 1 ? 'item' : 'itens'}`;
   }
 
   if (cart.length === 0) {
@@ -964,6 +979,7 @@ function updateCartUI() {
 
   // Order Total in Emerald Green (#10B981)
   if (totalEl) totalEl.innerText = formatBRL(total);
+  if (floatingTotal) floatingTotal.innerText = formatBRL(total);
 
   if (window.lucide) window.lucide.createIcons();
 }
@@ -1006,13 +1022,19 @@ function askClearCart() {
   }
   if (overlay) {
     overlay.hidden = false;
+    overlay.removeAttribute('hidden');
+    overlay.style.display = 'flex';
     if (window.lucide) window.lucide.createIcons();
   }
 }
 
 function closeClearModal() {
   const overlay = document.getElementById('confirm-clear');
-  if (overlay) overlay.hidden = true;
+  if (overlay) {
+    overlay.hidden = true;
+    overlay.setAttribute('hidden', '');
+    overlay.style.display = 'none';
+  }
 }
 
 function confirmClearCart() {

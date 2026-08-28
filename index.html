@@ -429,6 +429,25 @@
       </div>
     </div>
   </aside>
+  <!-- Sticky Floating Mobile Order Bar -->
+  <div id="floating-cart-bar" class="floating-order-bar" onclick="window.openCartDrawer()">
+    <div class="floating-bar-left">
+      <div class="floating-bar-icon">
+        <i data-lucide="shopping-bag"></i>
+      </div>
+      <div>
+        <div class="floating-bar-label">Ver Pedido</div>
+        <div id="floating-cart-count" class="floating-bar-count">0 itens</div>
+      </div>
+    </div>
+    <div class="floating-bar-right">
+      <button type="button" class="cart-clear-btn-floating" id="cart-clear-floating" onclick="event.stopPropagation(); window.askClearCart();" title="Limpar pedido" aria-label="Limpar pedido">
+        <i data-lucide="trash-2"></i>
+      </button>
+      <div id="floating-cart-total" class="floating-bar-total">R$ 0,00</div>
+      <i data-lucide="chevron-right" class="floating-bar-chevron"></i>
+    </div>
+  </div>
 
   <!-- Floating Proposal Widget (.onira-cta) (MANDATÓRIO CONVENÇÃO) -->
   <div id="onira-cta" class="onira-cta">
