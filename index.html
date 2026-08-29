@@ -449,16 +449,22 @@
     </div>
   </div>
 
-  <!-- Floating Proposal Widget (.onira-cta) (MANDATÓRIO CONVENÇÃO) -->
-  <div id="onira-cta" class="onira-cta">
-    <img src="assets/jeff-avatar.webp" alt="Jeff Motta" class="onira-cta-avatar">
-    <a href="proposta.html" class="onira-cta-content">
-      <span class="onira-cta-hook">Gostou do cardápio?</span>
-      <span class="onira-cta-call">Saiba como funciona meu trabalho</span>
+  <!-- FLOATING ONIRA PROPOSAL WIDGET (RETRÁTIL & TRANSPARENTE AO SCROLL) -->
+  <div class="onira-cta" id="onira-cta">
+    <a class="onira-cta-link" href="proposta.html" rel="nofollow">
+      <img src="assets/jeff-avatar.webp" alt="Jefferson Motta, Onira Labs" class="onira-cta-avatar" width="40" height="40">
+      <span class="onira-cta-text">
+        <span class="onira-cta-hook">Gostou do cardápio?</span>
+        <span class="onira-cta-call">Saiba como funciona meu trabalho →</span>
+      </span>
     </a>
-    <button id="onira-cta-close" class="onira-cta-close" aria-label="Fechar Convite">
-      <i data-lucide="x" style="width: 16px; height: 16px;"></i>
+    <button type="button" class="onira-cta-close" id="onira-cta-close" aria-label="Recolher convite" title="Recolher">
+      <i data-lucide="chevron-right"></i>
     </button>
+    <a class="onira-cta-collapsed-pill" href="proposta.html" id="onira-cta-collapsed" aria-label="Ver Proposta">
+      <i data-lucide="sparkles"></i>
+      <span>Compre esse site</span>
+    </a>
   </div>
 
   <!-- Modal de Confirmação: Limpar Pedido -->

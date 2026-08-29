@@ -1179,28 +1179,28 @@ function showToast(message) {
   }, 2800);
 }
 
-// Floating Onira Proposal Widget (.onira-cta)
+// Floating Onira Proposal Widget (.onira-cta) (RETRÁTIL & TRANSPARENTE AO SCROLL)
 function setupFloatingCTA() {
-  const dismissed = localStorage.getItem('la_onda_cta_onira');
-  if (dismissed === 'dispensado') return;
-
   const cta = document.getElementById('onira-cta');
   const closeBtn = document.getElementById('onira-cta-close');
+  if (!cta) return;
 
-  if (cta) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 280) {
-        cta.classList.add('visible');
-      }
+  // 1. Alternância para modo recolhido (não some nunca da tela)
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      cta.classList.toggle('collapsed');
     });
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        cta.classList.remove('visible');
-        localStorage.setItem('la_onda_cta_onira', 'dispensado');
-      });
-    }
   }
+
+  // 2. Transparência suave durante o scroll
+  let isScrolling;
+  window.addEventListener('scroll', () => {
+    cta.classList.add('scrolling');
+    clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
+      cta.classList.remove('scrolling');
+    }, 180);
+  }, { passive: true });
 }
