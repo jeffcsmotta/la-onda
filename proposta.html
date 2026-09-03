@@ -225,19 +225,28 @@
         }
 
         /* Mobile Header Ajustado (Desafogado e Elegante) */
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .site-header {
                 padding: 10px 0;
+            }
+            .nav-container {
+                gap: 10px;
+                flex-wrap: nowrap;
+                justify-content: space-between;
             }
             .badge-zero-fee {
                 display: none !important;
             }
+            .client-tagline {
+                display: none !important;
+            }
             .onirafly-logo {
-                height: 26px;
+                height: 24px;
             }
             .btn-header-cta {
-                padding: 7px 14px;
-                font-size: 0.78rem;
+                padding: 6px 12px;
+                font-size: 0.75rem;
+                gap: 4px;
             }
         }
 
@@ -265,6 +274,16 @@
             color: #E4E4E7;
             margin-bottom: 22px;
             align-self: flex-start;
+            max-width: 100%;
+        }
+
+        @media (max-width: 480px) {
+            .eyebrow-pill {
+                font-size: 0.74rem;
+                padding: 5px 12px;
+                gap: 6px;
+                line-height: 1.35;
+            }
         }
 
         .pulse-dot {
@@ -1006,7 +1025,7 @@
         <section class="hero-section">
             <div class="eyebrow-pill">
                 <span class="pulse-dot"></span>
-                <span>Zero taxa, zero comissão sobre clientes fiéis da La Onda</span>
+                <span>Zero comissão sobre clientes fiéis da La Onda</span>
             </div>
 
             <h1 class="hero-headline">
