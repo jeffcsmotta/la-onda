@@ -22,11 +22,11 @@
   { "slug": "agnoline", "Title": "Agnoline Artesanal (450g)", "Category": "massas-recheadas", "Image": "", "Price": 38.00, "Text": "Massa fina dobrada à mão com recheio tradicional de carnes e tempero colonial." },
   { "slug": "cappeletti-frango-espinafre", "Title": "Cappeletti Frango c/ Espinafre (450g)", "Category": "massas-recheadas", "Image": "", "Price": 39.00, "Text": "Cappeletti recheado com peito de frango e espinafre fresco para servir com molho." },
   { "slug": "conchiglioni-mussarela", "Title": "Conchiglioni de Mussarela (450g)", "Category": "massas-recheadas", "Image": "", "Price": 45.00, "Text": "Conchas grandes de massa fresca recheadas com queijo mussarela derretido." },
-  { "slug": "nhoque-recheado-di-sole", "Title": "Nhoque Recheado Di Sole (500g)", "Category": "massas-recheadas", "Image": "", "Price": 42.00, "Text": "Produzido pela Nhoqueria Di Sole em 5 opções de recheios nobres." },
+  { "slug": "nhoque-recheado-di-sole", "Title": "Nhoque Recheado Di Sole (500g)", "Category": "massas-recheadas", "Image": "assets/nhoque.jpg", "Price": 42.00, "Text": "Produzido pela Nhoqueria Di Sole em 5 opções de recheios nobres." },
   { "slug": "ravioli-quatro-queijos", "Title": "Ravióli de Quatro Queijos (450g)", "Category": "massas-recheadas", "Image": "", "Price": 46.50, "Text": "Blend especial de 4 queijos nobres derretidos em massa fresca italiana." },
   { "slug": "ravioli-mussarela-mel-nozes", "Title": "Ravióli Mussarela, Mel e Nozes (450g)", "Category": "massas-recheadas", "Image": "", "Price": 51.00, "Text": "Harmonização refinada de queijo mussarela com fio de mel e nozes crocantes." },
   { "slug": "rondellis-giulian", "Title": "Rondellis Pastifício Giulian (420g)", "Category": "massas-recheadas", "Image": "", "Price": 44.00, "Text": "Produzido pelo Pastifício Giulian em diversos sabores artesanais." },
-  { "slug": "tortei", "Title": "Tortéi Colonial de Moranga (450g)", "Category": "massas-recheadas", "Image": "", "Price": 28.50, "Text": "Massa artesanal recheada com moranga cabotiá assada e especiarias da serra." },
+  { "slug": "tortei", "Title": "Tortéi Colonial de Moranga (450g)", "Category": "massas-recheadas", "Image": "assets/tortei.jpg", "Price": 28.50, "Text": "Massa artesanal recheada com moranga cabotiá assada e especiarias da serra." },
   { "slug": "tortellone-ricota", "Title": "Tortellone de Ricota (450g)", "Category": "massas-recheadas", "Image": "", "Price": 42.00, "Text": "Massa fresca com ricota suave temperada com ervas finas aromáticas." },
   { "slug": "tortellone-carne-panela", "Title": "Tortellone Carne de Panela (450g)", "Category": "massas-recheadas", "Image": "", "Price": 54.75, "Text": "Recheio generoso de carne de panela cozida lentamente com tempero de família." },
 
@@ -35,7 +35,7 @@
   { "slug": "fidellini", "Title": "Fidellini (300g)", "Category": "massas-lisas", "Image": "", "Price": 13.50, "Text": "Corte fininho tradicional, perfeito para caldos de carne e sopas reconfortantes." },
   { "slug": "macarrao", "Title": "Macarrão Tradicional (450g)", "Category": "massas-lisas", "Image": "", "Price": 17.50, "Text": "Massa artesanal com corte tradicional e sabor de almoço de nona." },
   { "slug": "macarrao-tricolor", "Title": "Macarrão Tricolor (450g)", "Category": "massas-lisas", "Image": "", "Price": 21.00, "Text": "Combinação tricolor natural com ovos, espinafre e tomates." },
-  { "slug": "nhoque-formolo", "Title": "Nhoque Formolo (500g)", "Category": "massas-lisas", "Image": "", "Price": 16.00, "Text": "Nhoque clássico de batata produzido pela tradicional Massas Formolo." },
+  { "slug": "nhoque-formolo", "Title": "Nhoque Formolo (500g)", "Category": "massas-lisas", "Image": "assets/nhoque.jpg", "Price": 16.00, "Text": "Nhoque clássico de batata produzido pela tradicional Massas Formolo." },
   { "slug": "spaghetti", "Title": "Spaghetti Tradicional (450g)", "Category": "massas-lisas", "Image": "", "Price": 17.50, "Text": "O corte mais consagrado, massa artesanal para servir al dente." },
 
   { "slug": "molho-alfredo-410g", "Title": "Molho Alfredo (410g)", "Category": "molhos", "Image": "", "Price": 31.00, "Text": "Creme de leite fresco, manteiga nobre e parmesão maturado." },

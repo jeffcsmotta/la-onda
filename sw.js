@@ -1,4 +1,4 @@
-const CACHE_NAME = 'la-onda-v3';
+const CACHE_NAME = 'la-onda-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -7,7 +7,9 @@ const ASSETS_TO_CACHE = [
   './manifest.json',
   './assets/logo.svg',
   './assets/jeff-avatar.webp',
-  './assets/logo_onira_branco.png'
+  './assets/logo_onira_branco.png',
+  './assets/tortei.jpg',
+  './assets/nhoque.jpg'
 ];
 
 self.addEventListener('install', (event) => {
