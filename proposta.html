@@ -434,111 +434,128 @@
     }
 
     /* --------------------------------------------------------------------------
-       FECHAMENTO MASTER PROPOSTAS — DEV PROFILE CARD (SEÇÃO 10 CONVENÇÃO)
+       FECHAMENTO MASTER PROPOSTAS — DEV PROFILE CARD (PADRÃO LINKEDIN NAVY)
        -------------------------------------------------------------------------- */
     .dev-profile-card {
-      background: #0F172A;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-      padding: 32px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      color: #FFFFFF;
+      background: linear-gradient(145deg, #09192E 0%, #061224 100%);
+      border: 1px solid rgba(56, 116, 203, 0.32);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(24px);
+      border-radius: 16px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      position: relative;
+      overflow: hidden;
       margin-top: 40px;
+    }
+
+    .dev-profile-card::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(10, 102, 194, 0.22) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .dev-profile-header {
       display: flex;
       align-items: center;
       gap: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 0;
       flex-wrap: wrap;
     }
 
     .dev-avatar {
-      width: 84px;
-      height: 84px;
-      border-radius: 8px;
-      border: 2.5px solid var(--accent);
-      box-shadow: 0 0 14px rgba(217, 119, 6, 0.4);
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      border: 2px solid #0A66C2;
+      box-shadow: 0 0 20px rgba(10, 102, 194, 0.4);
       object-fit: cover;
+      flex-shrink: 0;
     }
 
     .dev-info-col {
-      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .dev-tag-top {
-      font-size: 0.72rem;
-      font-weight: 800;
+      font-family: monospace;
+      font-size: 0.6875rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--accent-light);
-      margin-bottom: 4px;
+      letter-spacing: 0.1em;
+      color: #38BDF8;
     }
 
     .dev-name {
       font-family: var(--font-title);
-      font-size: 1.4rem;
-      font-weight: 900;
+      font-size: 1.35rem;
+      font-weight: 800;
       color: #FFFFFF;
       line-height: 1.2;
+      margin: 0;
     }
 
     .dev-role {
-      font-size: 0.88rem;
-      color: #E2E8F0;
-      font-weight: 600;
-      margin-top: 2px;
-    }
-
-    .dev-location {
-      font-size: 0.78rem;
+      font-size: 0.875rem;
       color: #94A3B8;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-top: 4px;
+      font-weight: 500;
+      margin: 0;
     }
 
-    /* Quote Inset (MANDATÓRIO CONVENÇÃO) */
+    .dev-role strong {
+      color: #F8FAFC;
+    }
+
+    /* Quote Inset LinkedIn Navy */
     .dev-quote-inset {
-      background: rgba(255, 255, 255, 0.04);
-      border-left: 3px solid var(--accent);
-      border-radius: 0 6px 6px 0;
-      padding: 14px 16px;
+      background: transparent;
+      border-left: 3px solid #0A66C2;
+      border-radius: 0;
+      padding: 0 0 0 18px;
       font-style: italic;
-      font-size: 0.93rem;
+      font-size: 0.95rem;
       color: #E2E8F0;
-      line-height: 1.6;
-      margin-bottom: 22px;
+      line-height: 1.7;
+      margin: 0;
     }
 
-    /* Grid de Links Oficiais (Apenas 2 Botões Pills) */
+    /* Grid de Links Oficiais */
     .dev-links-grid {
       display: flex;
-      gap: 12px;
+      align-items: center;
+      gap: 20px;
       flex-wrap: wrap;
-      margin-bottom: 26px;
+      margin: 0;
     }
 
     .dev-pill-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 9999px;
-      color: #FFFFFF;
-      font-size: 0.84rem;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #94A3B8;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: color 0.2s ease;
+      background: none;
+      border: none;
+      padding: 0;
     }
 
     .dev-pill-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.3);
-      transform: translateY(-1px);
+      color: #38BDF8;
+      background: none;
+      border: none;
+      transform: none;
     }
 
     /* Assinatura Estúdio Onira Labs */
@@ -546,17 +563,45 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       flex-wrap: wrap;
       gap: 16px;
     }
 
     .studio-logo-img {
-      height: 32px;
-      max-width: 190px;
+      height: 22px;
+      max-width: 160px;
       object-fit: contain;
-      opacity: 0.95;
+      opacity: 0.9;
+    }
+
+    .studio-meta {
+      font-size: 0.75rem;
+      color: #64748B;
+      text-align: right;
+    }
+
+    @media (max-width: 768px) {
+      .dev-profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .dev-quote-inset {
+        padding-left: 0;
+        border-left: none;
+        border-top: 2px solid #0A66C2;
+        padding-top: 14px;
+        text-align: center;
+      }
+      .dev-studio-signature {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .studio-meta {
+        text-align: center;
+      }
     }
 
     .studio-meta {
@@ -843,43 +888,33 @@
     <!-- FECHAMENTO MASTER PROPOSTA: DEV PROFILE CARD (SEÇÃO 10) -->
     <div class="dev-profile-card">
       <div class="dev-profile-header">
-        <img src="assets/jeff-avatar.webp" alt="Jefferson Motta (Jeff)" class="dev-avatar">
+        <img src="assets/jeff-avatar.webp" alt="Jefferson Motta" class="dev-avatar" width="76" height="76">
         <div class="dev-info-col">
-          <div class="dev-tag-top">PRODUCT DESIGNER & FRONT-END</div>
-          <h3 class="dev-name">Jefferson Motta (Jeff)</h3>
-          <div class="dev-role">Product Designer & Digital Channels • Onira Labs</div>
-          <div class="dev-location">
-            <i data-lucide="map-pin" style="width: 14px; height: 14px; color: var(--accent-light);"></i>
-            <span>Caxias do Sul - RS • Serra Gaúcha</span>
-          </div>
+          <span class="dev-tag-top">SERVICE DESIGN & AI BUSINESS INTELLIGENCE</span>
+          <h3 class="dev-name">Jefferson Motta</h3>
+          <p class="dev-role">Service Designer e A.I Business Intelligence na <strong>Onira Labs</strong> • Caxias do Sul - Serra Gaúcha</p>
         </div>
       </div>
 
       <!-- Quote Inset adaptado para La Onda -->
-      <div class="dev-quote-inset">
-        "É isso que buscamos quando desenhamos o canal próprio da <strong>La Onda</strong>: o cliente entra em menos de 1 segundo, vê os tortéis, nhoques, lasanhas e molhos com fotos e porções claras, monta o pedido sem precisar de cadastro nem login — e esse pedido chega estruturado, item a item, direto no WhatsApp oficial da casa. Menos taxa para intermediários, mais margem para o caixa e agilidade total no atendimento."
-      </div>
+      <blockquote class="dev-quote-inset">
+        “É isso que buscamos quando desenhamos o canal próprio da <strong>La Onda</strong>: o cliente entra em menos de 1 segundo, vê os tortéis, nhoques, lasanhas e molhos com fotos e porções claras, monta o pedido sem precisar de cadastro nem login — e esse pedido chega estruturado, item a item, direto no WhatsApp oficial da casa. Menos taxa para intermediários, mais margem para o caixa e agilidade total no atendimento.”
+      </blockquote>
 
-      <!-- Grid de Links Oficiais (Apenas 2 Botões Pills) -->
-      <div class="dev-links-grid">
-        <a href="https://www.linkedin.com/in/jeff-motta" target="_blank" rel="noopener" class="dev-pill-btn">
-          <i data-lucide="linkedin" style="color: #0A66C2;"></i>
-          <span>LinkedIn: <strong>/in/jeff-motta</strong></span>
-          <i data-lucide="external-link" style="width: 12px; height: 12px; opacity: 0.6;"></i>
-        </a>
-        <a href="https://jeffmotta.framer.website" target="_blank" rel="noopener" class="dev-pill-btn">
-          <i data-lucide="globe" style="color: #EA580C;"></i>
-          <span>Portfólio: <strong>jeffmotta.framer.website</strong></span>
-          <i data-lucide="external-link" style="width: 12px; height: 12px; opacity: 0.6;"></i>
-        </a>
-      </div>
-
-      <!-- Assinatura Estúdio Onira Labs -->
+      <!-- Assinatura e Links Oficiais -->
       <div class="dev-studio-signature">
-        <img src="assets/logo_onira_branco.png" alt="Onira Labs" class="studio-logo-img">
+        <div class="dev-links-grid">
+          <a href="https://www.linkedin.com/in/jeff-motta" target="_blank" rel="noopener noreferrer" class="dev-pill-btn">
+            <i data-lucide="linkedin" style="color: #0A66C2;"></i>
+            <span>LinkedIn Oficial</span>
+          </a>
+          <a href="https://jeffmotta.framer.website/" target="_blank" rel="noopener noreferrer" class="dev-pill-btn">
+            <i data-lucide="globe" style="color: #38BDF8;"></i>
+            <span>Portfólio & Metodologia</span>
+          </a>
+        </div>
         <div class="studio-meta">
-          <div class="studio-tagline">ONIRA.FLY • HIGH CONVERSION DIGITAL CHANNELS</div>
-          <div class="studio-geo">Caxias do Sul - RS • Brasil</div>
+          <img src="assets/logo_onira_branco.png" alt="Onira Labs" class="studio-logo-img">
         </div>
       </div>
     </div>
