@@ -1483,10 +1483,7 @@ window.setPaymentMethod = function(method) {
     btn.classList.toggle('active', btn.dataset.method === method);
   });
 
-  const pixBox = document.getElementById('pix-payment-box');
   const trocoBox = document.getElementById('troco-input-box');
-
-  if (pixBox) pixBox.style.display = method === 'pix' ? 'block' : 'none';
   if (trocoBox) trocoBox.style.display = method === 'dinheiro' ? 'block' : 'none';
 };
 
