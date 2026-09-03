@@ -331,6 +331,61 @@
             transform: translateY(-1px);
         }
 
+        /* Hero Mobile Left-Aligned Layout (Padrão Oficial Onira.fly) */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 0 28px;
+                text-align: left;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .eyebrow-pill {
+                align-self: flex-start;
+                margin-left: 0;
+                margin-right: 0;
+                text-align: left;
+                font-size: 0.76rem;
+            }
+
+            .hero-headline {
+                text-align: left;
+                font-size: 2.15rem;
+                line-height: 1.18;
+                margin-left: 0;
+                margin-right: 0;
+                max-width: 100%;
+            }
+
+            .hero-subheadline {
+                text-align: left;
+                font-size: 0.96rem;
+                margin-left: 0;
+                margin-right: 0;
+                margin-bottom: 28px;
+                max-width: 100%;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                width: 100%;
+                gap: 12px;
+                margin-bottom: 40px;
+            }
+
+            .btn-primary-xl,
+            .btn-secondary-xl {
+                width: 100%;
+                justify-content: flex-start;
+                text-align: left;
+                padding: 15px 22px;
+                font-size: 0.95rem;
+            }
+        }
+
         /* ==========================================================================
            Bento Metric Cards (Estatísticas de Alto Impacto)
            ========================================================================== */
