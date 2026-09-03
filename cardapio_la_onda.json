@@ -1,192 +1,138 @@
 {
-  "restaurant": "La Onda - Empório de Congelados",
+  "restaurant": "La Onda — Empório de Congelados & Massas Artesanais",
+  "slogan": "Qualidade desde 1974",
   "location": "Rua Tronca, 3184, Bairro Rio Branco, Caxias do Sul - RS",
+  "telefones": [
+    "(54) 9.9991.7779",
+    "(54) 9.9972.1777"
+  ],
+  "redes": {
+    "instagram": "@laondacaxias",
+    "facebook": "laondacaxias"
+  },
+  "promocao_ativa": {
+    "titulo": "Compre 4 e Leve 5",
+    "regra": "Válida exclusivamente para molhos em potes de 300g",
+    "descricao": "Na compra de 4 molhos de 300g, o 5º molho é de presente."
+  },
+  "parceiros_producao": [
+    "Nhoqueria Di Sole",
+    "Pastifício Giulian",
+    "Massas Formolo"
+  ],
   "categories": {
-    "pizzas": [
-      {
-        "name": "Pizza de Camarão",
-        "description": "Massa de longa fermentação, farinha italiana, camarão selecionado",
-        "price_range": "R$ 40-50"
-      },
-      {
-        "name": "Pizza Calabresa",
-        "description": "Clássica com calabresa e molho de tomate",
-        "price_range": "R$ 35-45"
-      },
-      {
-        "name": "Pizza Mussarela",
-        "description": "Tradicional com queijo mozzarella",
-        "price_range": "R$ 35-45"
-      },
-      {
-        "name": "Pizza 4 Queijos",
-        "description": "Quatro tipos de queijo especial",
-        "price_range": "R$ 40-50"
-      }
+    "pizzas_artesanais_25cm": [
+      { "name": "Calabresa", "size": "25cm", "price": 51.00 },
+      { "name": "Camarão", "size": "25cm", "price": 74.00 },
+      { "name": "Carne de panela", "size": "25cm", "price": 59.00 },
+      { "name": "Cinco queijos", "size": "25cm", "price": 61.00 },
+      { "name": "Corn & bacon", "size": "25cm", "price": 67.00 },
+      { "name": "Frango com catupiry", "size": "25cm", "price": 59.00 },
+      { "name": "Jamón com figo", "size": "25cm", "price": 65.00 },
+      { "name": "Margherita", "size": "25cm", "price": 47.00 },
+      { "name": "Mussarela", "size": "25cm", "price": 48.00 },
+      { "name": "Perúgia", "size": "25cm", "price": 56.00 },
+      { "name": "Quatro queijos", "size": "25cm", "price": 52.00 },
+      { "name": "Três cogumelos", "size": "25cm", "price": 62.00 }
     ],
-    "massas_nhoques": [
-      {
-        "name": "Nhoque de Batata Noccioli",
-        "description": "Com molho 4 queijos, peito de peru e nozes pecan",
-        "price_range": "R$ 35-45"
-      },
-      {
-        "name": "Nhoque Recheado Calabresa",
-        "description": "Calabresa com mussarela derretida",
-        "price_range": "R$ 38-48"
-      },
-      {
-        "name": "Nhoque Recheado Mussarela",
-        "description": "Mussarela simples cremosa",
-        "price_range": "R$ 35-45"
-      },
-      {
-        "name": "Nhoque Recheado Mussarela com Catupiry",
-        "description": "Mussarela + catupiry cremoso",
-        "price_range": "R$ 38-48"
-      },
-      {
-        "name": "Massas Recheadas",
-        "description": "Variedade de massas recheadas",
-        "price_range": "R$ 30-40"
-      }
+    "pizzas_doces_25cm": [
+      { "name": "Califórnia", "size": "25cm", "price": 68.00 },
+      { "name": "Chocolate branco", "size": "25cm", "price": 55.00 },
+      { "name": "Chocolate branco com nozes", "size": "25cm", "price": 62.00 },
+      { "name": "Chocolate preto", "size": "25cm", "price": 55.00 },
+      { "name": "Chocolate preto e branco (meia a meia)", "size": "25cm", "price": 55.00 },
+      { "name": "M&M's (chocolate preto ou branco)", "size": "25cm", "price": 64.00 }
     ],
-    "lasanhas": [
+    "massas_recheadas": [
+      { "name": "Agnoline", "weight": "450g", "price": 38.00 },
+      { "name": "Cappeletti artesanal de frango com espinafre (para servir com molho)", "weight": "450g", "price": 39.00 },
+      { "name": "Conchiglioni de mussarela", "weight": "450g", "price": 45.00 },
       {
-        "name": "Lasanha Bolonhesa",
-        "description": "Camadas generosas de carne e queijo derretido",
-        "price_range": "R$ 40-50"
+        "name": "Nhoque recheado Di Sole",
+        "weight": "500g",
+        "price": 42.00,
+        "sabores": ["mussarela", "mussarela com manjericão", "quatro queijos", "calabresa", "geleia de damasco com cream cheese"],
+        "produzido_por": "Nhoqueria Di Sole"
       },
+      { "name": "Ravióli de quatro queijos", "weight": "450g", "price": 46.50 },
+      { "name": "Ravióli de mussarela, mel e nozes", "weight": "450g", "price": 51.00 },
       {
-        "name": "Lasanha 3 Queijos",
-        "description": "Apenas queijos especiais selecionados",
-        "price_range": "R$ 38-48"
+        "name": "Rondellis Pastifício Giulian",
+        "weight": "420g",
+        "price": 44.00,
+        "sabores": ["tomate seco e queijo", "figo e queijo", "cebola caramelizada", "presunto e queijo", "damasco com gorgonzola"],
+        "produzido_por": "Pastifício Giulian"
       },
-      {
-        "name": "Lasanha Abobrinha c/ Frango",
-        "description": "Molho branco com abobrinha e frango desfiado",
-        "price_range": "R$ 42-52"
-      },
-      {
-        "name": "Lasanha Tradicional",
-        "description": "Clássica com molho de tomate e queijo",
-        "price_range": "R$ 38-48"
-      }
+      { "name": "Tortéi", "weight": "450g", "price": 28.50 },
+      { "name": "Tortellone de ricota", "weight": "450g", "price": 42.00 },
+      { "name": "Tortellone de carne de panela", "weight": "450g", "price": 54.75 }
     ],
-    "panquecas": [
-      {
-        "name": "Panqueca de Brócolis",
-        "description": "Com palmito e molho branco",
-        "price_range": "R$ 30-40"
-      },
-      {
-        "name": "Panqueca 3 Queijos",
-        "description": "Três tipos de queijo gratinado",
-        "price_range": "R$ 35-45"
-      }
+    "massas_lisas": [
+      { "name": "Fettuccine", "weight": "450g", "price": 17.50 },
+      { "name": "Fettuccine de espinafre", "weight": "450g", "price": 21.00 },
+      { "name": "Fidellini", "weight": "300g", "price": 13.50 },
+      { "name": "Macarrão", "weight": "450g", "price": 17.50 },
+      { "name": "Macarrão tricolor", "weight": "450g", "price": 21.00 },
+      { "name": "Nhoque Formolo", "weight": "500g", "price": 16.00, "produzido_por": "Massas Formolo" },
+      { "name": "Spaghetti", "weight": "450g", "price": 17.50 }
     ],
     "molhos": [
-      {
-        "name": "Molho ao Sugo",
-        "description": "Natural ou extrato de tomate temperado",
-        "price_range": "Pote unitário"
-      },
-      {
-        "name": "Molho Bolonhesa",
-        "description": "Com carne moída e tomates selecionados",
-        "price_range": "Pote unitário"
-      },
-      {
-        "name": "Molho 4 Queijos",
-        "description": "Cremoso e especial para nhoques",
-        "price_range": "Pote unitário"
-      },
-      {
-        "name": "Molho de Frango Desfiado",
-        "description": "Para acompanhar nhoques e massas",
-        "price_range": "Pote unitário"
-      },
-      {
-        "name": "Molho de Camarão",
-        "description": "Para pizzas e massas",
-        "price_range": "Pote unitário"
-      },
-      {
-        "name": "Molho ao Sugo Branco",
-        "description": "Molho branco com ervas finas",
-        "price_range": "Pote unitário"
-      },
-      {
-        "name": "Molho Caseiro Especial 1",
-        "description": "Variedade caseira da casa",
-        "price_range": "Pote unitário"
-      },
-      {
-        "name": "Molho Caseiro Especial 2",
-        "description": "Variedade caseira da casa",
-        "price_range": "Pote unitário"
-      },
-      {
-        "name": "Molho Caseiro Especial 3",
-        "description": "Variedade caseira da casa",
-        "price_range": "Pote unitário"
-      }
+      { "name": "Alfredo 410g", "weight": "410g", "price": 31.00 },
+      { "name": "Alfredo 820g", "weight": "820g", "price": 62.00 },
+      { "name": "Carbonara", "weight": "300g", "price": 27.00, "promocao_compre4leve5": true },
+      { "name": "Cogumelos ao sugo", "weight": "300g", "price": 28.00, "promocao_compre4leve5": true },
+      { "name": "Da codorna (sem carne)", "weight": "300g", "price": 17.00, "promocao_compre4leve5": true },
+      { "name": "Do tatu (sem carne)", "weight": "300g", "price": 17.00, "promocao_compre4leve5": true },
+      { "name": "Noccioli especial", "weight": "300g", "price": 28.00, "promocao_compre4leve5": true },
+      { "name": "Pesto", "weight": "170g", "price": 27.50 },
+      { "name": "Quatro queijos", "weight": "300g", "price": 27.00, "promocao_compre4leve5": true },
+      { "name": "Tomates secos", "weight": "300g", "price": 27.00, "promocao_compre4leve5": true },
+      { "name": "Tradicional gourmet (molho vermelho com moela)", "weight": "300g", "price": 26.00, "promocao_compre4leve5": true },
+      { "name": "Vermelho com frango desfiado", "weight": "300g", "price": 26.00, "promocao_compre4leve5": true }
     ],
-    "outros": [
-      {
-        "name": "Carnes Selecionadas",
-        "description": "Carne para preparos diversos",
-        "price_range": "Consultar"
-      },
-      {
-        "name": "Vinhos Importados",
-        "description": "Seleção de vinhos para acompanhar",
-        "price_range": "Consultar"
-      },
-      {
-        "name": "Azeites Premium",
-        "description": "Azeites especiais importados",
-        "price_range": "Consultar"
-      },
-      {
-        "name": "Produtos Coloniais",
-        "description": "Produtos da região",
-        "price_range": "Consultar"
-      }
+    "carnes": [
+      { "name": "Alcatra imperial 400g", "weight": "400g", "price": 37.50 },
+      { "name": "Alcatra imperial 800g", "weight": "800g", "price": 75.00 },
+      { "name": "À parmegiana de frango", "weight": "580g", "price": 45.00 },
+      { "name": "Bife à parmegiana 600g", "weight": "600g", "price": 64.50 },
+      { "name": "Bife à parmegiana 1,2kg", "weight": "1,2kg", "price": 129.00 },
+      { "name": "Carne de panela", "weight": "500g", "price": 55.00 },
+      { "name": "Codornas recheadas 400g (1 un)", "weight": "400g", "price": 41.00 },
+      { "name": "Codornas recheadas 800g (2 un)", "weight": "800g", "price": 82.00 },
+      { "name": "Escondidinho de carne de panela 500g", "weight": "500g", "price": 41.00 },
+      { "name": "Escondidinho de carne de panela 1kg", "weight": "1kg", "price": 82.00 },
+      { "name": "Filé à parmegiana 600g", "weight": "600g", "price": 74.50 },
+      { "name": "Filé à parmegiana 1,2kg", "weight": "1,2kg", "price": 149.00 },
+      { "name": "Frango cremoso com quatro queijos 525g", "weight": "525g", "price": 41.00 },
+      { "name": "Frango cremoso com quatro queijos 1,05kg", "weight": "1,05kg", "price": 82.00 },
+      { "name": "Fricassê de frango com purê de batata cremoso 500g", "weight": "500g", "price": 39.00 },
+      { "name": "Fricassê de frango com purê de batata cremoso 1kg", "weight": "1kg", "price": 78.00 },
+      { "name": "Tatu bovino recheado com calabresa 400g", "weight": "400g", "price": 38.00 },
+      { "name": "Tatu bovino recheado com calabresa 800g", "weight": "800g", "price": 76.00 }
+    ],
+    "lasanhas": [
+      { "name": "Carne (à bolonhesa)", "sizes": { "550g": 45.75, "1kg": 81.75 } },
+      { "name": "Carne com massa verde", "sizes": { "550g": 45.75, "1kg": 81.75 } },
+      { "name": "Carne de panela", "sizes": { "550g": 47.75, "1kg": 85.50 } },
+      { "name": "Espinafre", "sizes": { "550g": 42.50, "1kg": 76.50 } },
+      { "name": "Frango", "sizes": { "550g": 45.75, "1kg": 81.75 } },
+      { "name": "Quatro queijos", "sizes": { "550g": 46.75, "1kg": 84.50 } },
+      { "name": "Rosé de carne com massa verde", "sizes": { "550g": 45.75, "1kg": 81.75 } }
+    ],
+    "panquecas_sem_molho_400g": [
+      { "name": "Carne moída (4 un)", "weight": "400g", "price": 36.00 },
+      { "name": "Carne de panela (4 un)", "weight": "400g", "price": 38.00 },
+      { "name": "Frango com queijo (4 un)", "weight": "400g", "price": 38.00 },
+      { "name": "Milho com queijo (4 un)", "weight": "400g", "price": 38.00 }
+    ],
+    "diversos": [
+      { "name": "Caldo de sopa (1L)", "weight": "1L", "price": 29.75 },
+      { "name": "Caldo de sopa com pedaços de galinha caipira (1,2kg)", "weight": "1,2kg", "price": 39.75 },
+      { "name": "Feijão com bacon e calabresa (500g)", "weight": "500g", "price": 36.50 },
+      { "name": "Lentilha com calabresa (500g)", "weight": "500g", "price": 36.50 },
+      { "name": "Piên (250g)", "weight": "250g", "price": 20.00 }
     ]
   },
-  "promocoes": [
-    {
-      "titulo": "Compre 2 pizzas e ganhe 1 molho",
-      "descricao": "Ao comprar duas pizzas, cliente ganha um molho de presente para escolher o sabor",
-      "condicoes": "Válida enquanto durar estoque - consulta no estabelecimento"
-    }
-  ],
-  "horario_funcionamento": {
-    "terca_sexta": "7:30-12:00 & 13:15-18:30",
-    "sabado": "9:00-12:00",
-    "domingo": "Fechado",
-    "segunda": "Fechado ou parcial"
-  },
-  "preparo_recomendado": {
-    "nhoques": "5 min micro-ondas ou 20 min forno 180°C",
-    "pizzas": "Aquecer no forno ou micro-ondas",
-    "lasanhas": "Aquecer conforme instruções da embalagem"
-  },
-  "informacoes_uteis": {
-    "endereco_completo": "Rua Tronca, 3184, Bairro Rio Branco, Caxias do Sul - RS",
-    "contato_instagram": "@laondacaxias",
-    "contato_facebook": "@laondacaxias",
-    "produto": "Congelados italianos",
-    "validade_padrao": "6-12 meses (verificar embalagem)",
-    "conservacao": "Entre -18°C a -25°C"
-  },
-  "fontes_pesquisa": [
-    "Instagram @laondacaxias (posts de 2022-2026)",
-    "Facebook @laondacaxias (posts e descrições)",
-    "Web searches (ifood, cylex, web search results)",
-    "Observação: Ifood página protegida por Cloudflare"
-  ],
-  "data_atualizacao": "2026-08-25",
-  "observacao": "Preços indicados são estimativas baseadas no mercado de produtos congelados similares. Para preços exatos, consultar Ifood app ou estabelecimento diretamente."
+  "data_atualizacao": "2026-09-03",
+  "fonte": "Cardápio impresso oficial do restaurante La Onda (Qualidade desde 1974)"
 }

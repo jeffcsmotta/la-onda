@@ -1,8 +1,11 @@
 [
-  { "slug": "pizzas", "Title": "Pizzas", "Content": "" },
-  { "slug": "massas-nhoques", "Title": "Massas & Nhoques", "Content": "" },
-  { "slug": "lasanhas", "Title": "Lasanhas", "Content": "" },
-  { "slug": "panquecas", "Title": "Panquecas", "Content": "" },
-  { "slug": "molhos", "Title": "Molhos Especiais", "Content": "" },
-  { "slug": "outros", "Title": "Outros Produtos", "Content": "" }
+  { "slug": "pizzas", "Title": "Pizzas Artesanais (25cm)", "Content": "Massa italiana artesanal de longa fermentação" },
+  { "slug": "pizzas-doces", "Title": "Pizzas Doces (25cm)", "Content": "Massa artesanal com chocolates nobres e frutas" },
+  { "slug": "massas-recheadas", "Title": "Massas Recheadas", "Content": "Tortéis, cappeletti, ravióli, rondelli e nhoque recheado" },
+  { "slug": "massas-lisas", "Title": "Massas Lisas", "Content": "Fettuccine, spaghetti, fidellini, macarrão e nhoque Formolo" },
+  { "slug": "molhos", "Title": "Molhos Artesanais", "Content": "Promoção Compre 4 e Leve 5 nos potes de 300g" },
+  { "slug": "carnes", "Title": "Carnes & Especiais", "Content": "Alcatra imperial, parmegianas, filé e fricassê" },
+  { "slug": "lasanhas", "Title": "Lasanhas Gratinadas", "Content": "Porções Média 550g e Família 1kg prontas para assar" },
+  { "slug": "panquecas", "Title": "Panquecas sem Molho", "Content": "Bandejas com 4 unidades (400g) para combinar com nossos molhos" },
+  { "slug": "diversos", "Title": "Diversos & Sopas", "Content": "Caldos caseiros, galinha caipira, feijão, lentilha e piên colonial" }
 ]

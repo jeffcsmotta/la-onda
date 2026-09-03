@@ -1,389 +1,1005 @@
 /* ==========================================================================
-   LA ONDA — MASSAS ARTESANAIS, MOLHOS & PRATOS PRONTOS
+   LA ONDA — MASSAS ARTESANAIS, MOLHOS, PIZZAS & PRATOS PRONTOS
+   Desde 1974 • Tradição Italiana & Empório de Congelados
    Application Engine & Master Logic • Onira Labs
    ========================================================================== */
 
-// Client Contact & Operational Data
+// Client Contact & Operational Data (Cardápio Oficial Físico)
 const CLIENT_CONFIG = {
   name: 'La Onda Massas Artesanais',
-  whatsapp: '5554999917779', // WhatsApp Oficial da La Onda
-  pixKey: '5554999917779',   // Chave Pix
+  slogan: 'Qualidade desde 1974',
+  whatsapp: '5554999917779',          // WhatsApp Oficial 1
+  whatsappAlt: '5554999721777',       // WhatsApp Oficial 2
+  pixKey: '5554999917779',            // Chave Pix
   pixName: 'AL Lunelli Indústria de Alimentos Ltda',
   deliveryFee: 10.00,
-  address: 'Rua Tronca, 3184 – Rio Branco, Caxias do Sul - RS'
+  address: 'Rua Tronca, 3184 – Rio Branco, Caxias do Sul - RS',
+  promoMolhos: 'COMPRE 4 E LEVE 5 nos molhos de 300g'
 };
 
-// Culinary Image Library
+// Curated Gastronomic Image Library (Fotografia Culinária Curada em Alta Resolução)
 const IMAGES = {
+  // Pizzas Salgadas
+  pizzaCalabresa: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=700&q=80',
+  pizzaCamarao: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80',
+  pizzaCarnePanela: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=700&q=80',
+  pizzaQueijos: 'https://images.unsplash.com/photo-1544982503-9f984c14501a?auto=format&fit=crop&w=700&q=80',
+  pizzaBacon: 'https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=700&q=80',
+  pizzaFrangoCatupiry: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80',
+  pizzaJamonFigo: 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=700&q=80',
+  pizzaMargherita: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=700&q=80',
+  pizzaMussarela: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=80',
+  pizzaPerugia: 'https://images.unsplash.com/photo-1588315029754-2dd089d39a1a?auto=format&fit=crop&w=700&q=80',
+  pizzaCogumelos: 'https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=700&q=80',
+
+  // Pizzas Doces
+  pizzaCalifornia: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=700&q=80',
+  pizzaChocBranco: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80',
+  pizzaChocBrancoNozes: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80',
+  pizzaChocPreto: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=80',
+  pizzaChocMeia: 'https://images.unsplash.com/photo-1582293041079-7814c2f12063?auto=format&fit=crop&w=700&q=80',
+  pizzaMms: 'https://images.unsplash.com/photo-1585238342024-78d387f4a707?auto=format&fit=crop&w=700&q=80',
+
+  // Massas Recheadas
+  agnoline: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281691?auto=format&fit=crop&w=700&q=80',
+  cappeletti: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=700&q=80',
+  conchiglioni: 'https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=700&q=80',
+  nhoqueDiSole: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=700&q=80',
+  ravioliQueijos: 'https://images.unsplash.com/photo-1587740908075-9e245070dfaa?auto=format&fit=crop&w=700&q=80',
+  ravioliMelNozes: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=700&q=80',
+  rondellisGiulian: 'https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=700&q=80',
   tortei: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=700&q=80',
-  nhoque: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=700&q=80',
-  lasanha: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=700&q=80',
-  canelone: 'https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=700&q=80',
-  capeletti: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281691?auto=format&fit=crop&w=700&q=80',
-  ravioli: 'https://images.unsplash.com/photo-1587740908075-9e245070dfaa?auto=format&fit=crop&w=700&q=80',
-  talharim: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=700&q=80',
-  bolonhesa: 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=700&q=80',
-  sugo: 'https://images.unsplash.com/photo-1572441713132-c542fc4fe282?auto=format&fit=crop&w=700&q=80',
-  quatroqueijos: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=700&q=80',
-  funghi: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=700&q=80',
-  pesto: 'https://images.unsplash.com/photo-1595295333158-4742f28fbd85?auto=format&fit=crop&w=700&q=80',
-  parmegiana: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=700&q=80',
-  dobradinha: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=700&q=80',
-  polenta: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=700&q=80',
-  galeto: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=700&q=80',
-  tiramisu: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=700&q=80',
-  sagu: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=700&q=80',
-  suco: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=700&q=80',
-  vinho: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=700&q=80'
+  tortelloneRicota: 'https://images.unsplash.com/photo-1587740908075-9e245070dfaa?auto=format&fit=crop&w=700&q=80',
+  tortelloneCarne: 'https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=700&q=80',
+
+  // Massas Lisas
+  fettuccine: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=700&q=80',
+  fettuccineEspinafre: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=700&q=80',
+  fidellini: 'https://images.unsplash.com/photo-1621996346565-e3d5d6281691?auto=format&fit=crop&w=700&q=80',
+  macarrao: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=700&q=80',
+  macarraoTricolor: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=700&q=80',
+  nhoqueFormolo: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=700&q=80',
+  spaghetti: 'https://images.unsplash.com/photo-1572441713132-c542fc4fe282?auto=format&fit=crop&w=700&q=80',
+
+  // Molhos
+  molhoAlfredo: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=700&q=80',
+  molhoCarbonara: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=700&q=80',
+  molhoCogumelos: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=700&q=80',
+  molhoCodorna: 'https://images.unsplash.com/photo-1572441713132-c542fc4fe282?auto=format&fit=crop&w=700&q=80',
+  molhoTatu: 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=700&q=80',
+  molhoNoccioli: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=700&q=80',
+  molhoPesto: 'https://images.unsplash.com/photo-1595295333158-4742f28fbd85?auto=format&fit=crop&w=700&q=80',
+  molhoQuatroQueijos: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=700&q=80',
+  molhoTomatesSecos: 'https://images.unsplash.com/photo-1572441713132-c542fc4fe282?auto=format&fit=crop&w=700&q=80',
+  molhoMoela: 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=700&q=80',
+  molhoFrango: 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=700&q=80',
+
+  // Carnes & Especiais
+  alcatraImperial: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80',
+  parmegianaFrango: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=700&q=80',
+  bifeParmegiana: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=700&q=80',
+  carnePanela: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=700&q=80',
+  codornasRecheadas: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=700&q=80',
+  escondidinho: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80',
+  fileParmegiana: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=700&q=80',
+  frangoCremoso: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=700&q=80',
+  fricasseFrango: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=700&q=80',
+  tatuRecheado: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80',
+
+  // Lasanhas
+  lasanhaBolonhesa: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=700&q=80',
+  lasanhaVerde: 'https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=700&q=80',
+  lasanhaCarnePanela: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=700&q=80',
+  lasanhaEspinafre: 'https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=700&q=80',
+  lasanhaFrango: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=700&q=80',
+  lasanhaQueijos: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=700&q=80',
+  lasanhaRose: 'https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=700&q=80',
+
+  // Panquecas
+  panquecaCarneMoida: 'https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=700&q=80',
+  panquecaCarnePanela: 'https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=700&q=80',
+  panquecaFrangoQueijo: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=700&q=80',
+  panquecaMilhoQueijo: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=700&q=80',
+
+  // Diversos
+  caldoSopa: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=700&q=80',
+  caldoGalinha: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=700&q=80',
+  feijaoBacon: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=700&q=80',
+  lentilhaCalabresa: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=700&q=80',
+  pien: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=700&q=80'
 };
 
-// Database of Artisanal Products (La Onda — Empório de Congelados)
+// Database Oficial dos Produtos (La Onda — Fiel ao Cardápio Físico Oficial)
 const PRODUCTS_DATA = [
-  // --- PIZZAS DE LONGA FERMENTAÇÃO ---
-  {
-    id: 'pizza-camarao',
-    title: 'Pizza de Camarão Selecionado',
-    category: 'pizzas',
-    desc: 'Massa artesanal de longa fermentação, farinha italiana, camarões selecionados salteados e queijo gratinado.',
-    portions: [
-      { name: 'Pizza Média (Serve 2-3 pessoas)', price: 48.00 }
-    ],
-    badge: 'Especial da Casa',
-    badgeType: 'gold',
-    image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80',
-    hint: 'Longa fermentação natural • Massa leve e crocante'
-  },
-  {
-    id: 'pizza-4-queijos',
-    title: 'Pizza Quatro Queijos Especial',
-    category: 'pizzas',
-    desc: 'Molho de tomate artesanal, mussarela colonial, provolone defumado, gorgonzola e parmesão maturado.',
-    portions: [
-      { name: 'Pizza Média (Serve 2-3 pessoas)', price: 45.00 }
-    ],
-    badge: 'Mais Pedida',
-    badgeType: 'gold',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=80',
-    hint: 'Aquecer no forno pré-aquecido a 200°C por 10-12 min'
-  },
+  // =========================================================================
+  // 1. PIZZAS ARTESANAIS COM MASSA ITALIANA (25cm)
+  // =========================================================================
   {
     id: 'pizza-calabresa',
     title: 'Pizza Calabresa Artesanal',
     category: 'pizzas',
-    desc: 'Calabresa fatiada nobre, cebola roxa fininha, molho de tomate natural e orégano fresco da serra.',
-    portions: [
-      { name: 'Pizza Média (Serve 2-3 pessoas)', price: 40.00 }
-    ],
+    desc: 'Massa italiana de longa fermentação de 25cm, molho de tomate natural, queijo mussarela colonial e calabresa fatiada nobre.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 51.00 }],
     badge: 'Clássica',
     badgeType: 'artesanal',
-    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=700&q=80',
-    hint: 'Massa aerada e crocante'
+    image: IMAGES.pizzaCalabresa,
+    hint: '25cm • Massa italiana de longa fermentação'
+  },
+  {
+    id: 'pizza-camarao',
+    title: 'Pizza de Camarão Selecionado',
+    category: 'pizzas',
+    desc: 'Camarões selecionados salteados com ervas, molho artesanal e queijo gratinado em massa italiana de longa fermentação.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 74.00 }],
+    badge: 'Especial da Casa',
+    badgeType: 'gold',
+    image: IMAGES.pizzaCamarao,
+    hint: '25cm • Camarões nobres salteados'
+  },
+  {
+    id: 'pizza-carne-panela',
+    title: 'Pizza Carne de Panela',
+    category: 'pizzas',
+    desc: 'Suculenta carne bovina desfiada apurada lentamente na panela de ferro com tempero da família e queijo gratinado.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 59.00 }],
+    badge: 'Sabor da Casa',
+    badgeType: 'gold',
+    image: IMAGES.pizzaCarnePanela,
+    hint: '25cm • Carne de panela desfiada macia'
+  },
+  {
+    id: 'pizza-cinco-queijos',
+    title: 'Pizza Cinco Queijos Nobre',
+    category: 'pizzas',
+    desc: 'Combinação refinada de mussarela colonial, provolone defumado, gorgonzola aromático, parmesão e queijo cremoso.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 61.00 }],
+    badge: 'Super Queijo',
+    badgeType: 'gold',
+    image: IMAGES.pizzaQueijos,
+    hint: '25cm • 5 queijos nobres gratinados'
+  },
+  {
+    id: 'pizza-corn-bacon',
+    title: 'Pizza Corn & Bacon Crocante',
+    category: 'pizzas',
+    desc: 'Cubos de bacon douradinho crocante, milho verde doce selecionado e mussarela colonial sobre massa artesanal.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 67.00 }],
+    badge: 'Crocante',
+    badgeType: 'artesanal',
+    image: IMAGES.pizzaBacon,
+    hint: '25cm • Bacon crocante e milho doce'
+  },
+  {
+    id: 'pizza-frango-catupiry',
+    title: 'Pizza Frango com Catupiry',
+    category: 'pizzas',
+    desc: 'Peito de frango cozido e desfiado temperado artesanalmente com generosa cobertura de Catupiry legítimo.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 59.00 }],
+    badge: 'Tradicional',
+    badgeType: 'artesanal',
+    image: IMAGES.pizzaFrangoCatupiry,
+    hint: '25cm • Frango suculento e Catupiry genuíno'
+  },
+  {
+    id: 'pizza-jamon-figo',
+    title: 'Pizza Jamón com Figo Nobre',
+    category: 'pizzas',
+    desc: 'Sofisticada harmonia agridoce de presunto tipo jamón espanhol curado com lâminas delicadas de figo e queijo derretido.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 65.00 }],
+    badge: 'Gourmet',
+    badgeType: 'gold',
+    image: IMAGES.pizzaJamonFigo,
+    hint: '25cm • Jamón espanhol e figo nobre'
+  },
+  {
+    id: 'pizza-margherita',
+    title: 'Pizza Margherita Italiana',
+    category: 'pizzas',
+    desc: 'O consagrado clássico italiano: molho de tomates frescos pelados, mussarela de alta fusão e folhas de manjericão fresco.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 47.00 }],
+    badge: 'Tradição',
+    badgeType: 'artesanal',
+    image: IMAGES.pizzaMargherita,
+    hint: '25cm • Manjericão fresco colhido no dia'
   },
   {
     id: 'pizza-mussarela',
-    title: 'Pizza Mussarela Tradicional',
+    title: 'Pizza Mussarela Especial',
     category: 'pizzas',
-    desc: 'Mussarela cremosa de alta fusão, rodelas de tomate fresco, azeitonas pretas e manjericão.',
-    portions: [
-      { name: 'Pizza Média (Serve 2-3 pessoas)', price: 40.00 }
-    ],
-    badge: 'Tradicional',
+    desc: 'Cobertura farta de pura mussarela colonial cremosa, tomates em rodelas e orégano fresco sobre massa aerada e leve.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 48.00 }],
+    badge: 'Clássica',
     badgeType: 'artesanal',
-    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=700&q=80',
-    hint: 'Queijo derretido no ponto perfeito'
+    image: IMAGES.pizzaMussarela,
+    hint: '25cm • Queijo derretido no ponto perfeito'
+  },
+  {
+    id: 'pizza-perugia',
+    title: 'Pizza Perúgia Típica',
+    category: 'pizzas',
+    desc: 'Inspirada na Úmbria italiana: calabresa especial moída com temperos da serra, queijo derretido e toque de ervas finas.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 56.00 }],
+    badge: 'Especialidade',
+    badgeType: 'gold',
+    image: IMAGES.pizzaPerugia,
+    hint: '25cm • Receita histórica da Úmbria'
+  },
+  {
+    id: 'pizza-quatro-queijos',
+    title: 'Pizza Quatro Queijos Tradicional',
+    category: 'pizzas',
+    desc: 'Mussarela colonial, provolone defumado, queijo gorgonzola e parmesão maturado em perfeita harmonia.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 52.00 }],
+    badge: 'Mais Pedida',
+    badgeType: 'gold',
+    image: IMAGES.pizzaQueijos,
+    hint: '25cm • Quatro queijos nobres fundidos'
+  },
+  {
+    id: 'pizza-tres-cogumelos',
+    title: 'Pizza Três Cogumelos Gourmet',
+    category: 'pizzas',
+    desc: 'Trio nobre de cogumelos frescos salteados no azeite extravirgem com alho dourado e queijo gratinado.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 62.00 }],
+    badge: 'Gourmet',
+    badgeType: 'gold',
+    image: IMAGES.pizzaCogumelos,
+    hint: '25cm • Cogumelos frescos salteados'
   },
 
-  // --- NHOQUES & MASSAS ---
+  // =========================================================================
+  // 2. PIZZAS DOCES (25cm)
+  // =========================================================================
   {
-    id: 'nhoque-noccioli',
-    title: 'Nhoque de Batata Noccioli',
-    category: 'massas',
-    desc: 'Nhoque artesanal de batata servido com molho 4 queijos cremoso, tiras de peito de peru defumado e nozes pecan.',
-    portions: [
-      { name: 'Bandeja 500g (Serve 2 pessoas)', price: 40.00 },
-      { name: 'Bandeja 1kg (Serve 4 pessoas)', price: 76.00 }
-    ],
-    badge: 'Assinatura La Onda',
+    id: 'pizza-california-doce',
+    title: 'Pizza Califórnia Doce',
+    category: 'pizzas-doces',
+    desc: 'Massa artesanal coberta com queijo suave e frutas nobres em calda (pêssego, figo, abacaxi) gratinadas ao forno.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 68.00 }],
+    badge: 'Clássica da Serra',
     badgeType: 'gold',
-    image: IMAGES.nhoque,
-    hint: 'Prato nobre e reconfortante • Receita exclusiva'
+    image: IMAGES.pizzaCalifornia,
+    hint: '25cm • Frutas em calda selecionadas e queijo'
   },
   {
-    id: 'nhoque-recheado-calabresa',
-    title: 'Nhoque Recheado com Calabresa & Mussarela',
-    category: 'massas',
-    desc: 'Bolinhas de nhoque de batata recheadas com calabresa moída fininha e mussarela derretida por dentro.',
-    portions: [
-      { name: 'Bandeja 500g (Serve 2 pessoas)', price: 43.00 },
-      { name: 'Bandeja 1kg (Serve 4 pessoas)', price: 80.00 }
-    ],
-    badge: 'Recheado à Mão',
-    badgeType: 'gold',
-    image: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=700&q=80',
-    hint: 'Massa macia com recheio abundante'
+    id: 'pizza-chocolate-branco',
+    title: 'Pizza Chocolate Branco Nobre',
+    category: 'pizzas-doces',
+    desc: 'Cobertura generosa de puro chocolate branco artesanal derretido e cremoso sobre massa italiana crocante.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 55.00 }],
+    badge: 'Sobremesa',
+    badgeType: 'artesanal',
+    image: IMAGES.pizzaChocBranco,
+    hint: '25cm • Puro chocolate branco nobre'
   },
   {
-    id: 'nhoque-recheado-mussarela-catupiry',
-    title: 'Nhoque Recheado Mussarela & Catupiry',
-    category: 'massas',
-    desc: 'Combinação ultra cremosa de queijo mussarela colonial e Catupiry genuíno.',
+    id: 'pizza-chocolate-branco-nozes',
+    title: 'Pizza Chocolate Branco com Nozes',
+    category: 'pizzas-doces',
+    desc: 'Chocolate branco cremoso salpicado generosamente com pedaços crocantes de nozes nobres selecionadas da serra.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 62.00 }],
+    badge: 'Especial Doces',
+    badgeType: 'gold',
+    image: IMAGES.pizzaChocBrancoNozes,
+    hint: '25cm • Chocolate branco com nozes crocantes'
+  },
+  {
+    id: 'pizza-chocolate-preto',
+    title: 'Pizza Chocolate Preto ao Leite',
+    category: 'pizzas-doces',
+    desc: 'Chocolate preto ao leite nobre e aveludado derretido sobre a massa de pizza artesanal quentinha.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 55.00 }],
+    badge: 'Favorita',
+    badgeType: 'artesanal',
+    image: IMAGES.pizzaChocPreto,
+    hint: '25cm • Chocolate ao leite artesanal'
+  },
+  {
+    id: 'pizza-chocolate-meia-a-meia',
+    title: 'Pizza Chocolate Meia a Meia',
+    category: 'pizzas-doces',
+    desc: 'Metade chocolate preto ao leite e metade chocolate branco nobre derretidos lado a lado.',
+    portions: [{ name: 'Pizza 25cm (Serve 1-2 pessoas)', price: 55.00 }],
+    badge: 'Mais Pedida',
+    badgeType: 'gold',
+    image: IMAGES.pizzaChocMeia,
+    hint: '25cm • O melhor dos dois chocolates'
+  },
+  {
+    id: 'pizza-m-ms',
+    title: 'Pizza M&M\'s Crocante',
+    category: 'pizzas-doces',
+    desc: 'Base nobre de chocolate derretido coberta com confeitos coloridos e crocantes de M&M\'s legítimos.',
     portions: [
-      { name: 'Bandeja 500g (Serve 2 pessoas)', price: 43.00 },
-      { name: 'Bandeja 1kg (Serve 4 pessoas)', price: 80.00 }
+      { name: 'Base Chocolate Preto c/ M&M\'s (25cm)', price: 64.00 },
+      { name: 'Base Chocolate Branco c/ M&M\'s (25cm)', price: 64.00 }
+    ],
+    badge: 'Alegria da Casa',
+    badgeType: 'gold',
+    image: IMAGES.pizzaMms,
+    hint: '25cm • Escolha chocolate preto ou branco'
+  },
+
+  // =========================================================================
+  // 3. MASSAS RECHEADAS (450g / 500g)
+  // =========================================================================
+  {
+    id: 'massa-agnoline',
+    title: 'Agnoline Artesanal Colonial',
+    category: 'massas-recheadas',
+    desc: 'Massa finíssima dobrada à mão com recheio tradicional de carnes nobres e temperos coloniais. Perfeito em caldo ou molho.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 38.00 }],
+    badge: 'Tradição Colonial',
+    badgeType: 'gold',
+    image: IMAGES.agnoline,
+    hint: 'Pacote 450g • Ideal para caldo ou servir com molho'
+  },
+  {
+    id: 'massa-cappeletti-frango-espinafre',
+    title: 'Cappeletti Frango com Espinafre',
+    category: 'massas-recheadas',
+    desc: 'Cappeletti artesanal recheado com peito de frango temperado e espinafre fresco. Feito especialmente para servir com molho.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 39.00 }],
+    badge: 'Feito à Mão',
+    badgeType: 'artesanal',
+    image: IMAGES.cappeletti,
+    hint: 'Pacote 450g • Feito para servir com molhos da casa'
+  },
+  {
+    id: 'massa-conchiglioni-mussarela',
+    title: 'Conchiglioni de Mussarela',
+    category: 'massas-recheadas',
+    desc: 'Conchas grandes de massa grano duro recheadas com queijo mussarela colonial que estica ao cortar. Perfeito para gratinar.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 45.00 }],
+    badge: 'Gratinar no Forno',
+    badgeType: 'gold',
+    image: IMAGES.conchiglioni,
+    hint: 'Pacote 450g • Recheio generoso de queijo'
+  },
+  {
+    id: 'massa-nhoque-di-sole',
+    title: 'Nhoque Recheado Di Sole',
+    category: 'massas-recheadas',
+    desc: 'Nhoque de batata macio e recheado, produzido pela consagrada Nhoqueria Di Sole. Escolha seu sabor favorito.',
+    portions: [
+      { name: 'Mussarela (500g)', price: 42.00 },
+      { name: 'Mussarela com Manjericão (500g)', price: 42.00 },
+      { name: 'Quatro Queijos (500g)', price: 42.00 },
+      { name: 'Calabresa (500g)', price: 42.00 },
+      { name: 'Damasco com Cream Cheese (500g)', price: 42.00 }
+    ],
+    badge: 'Nhoqueria Di Sole',
+    badgeType: 'gold',
+    image: IMAGES.nhoqueDiSole,
+    hint: 'Pacote 500g • Produzido pela Nhoqueria Di Sole'
+  },
+  {
+    id: 'massa-ravioli-quatro-queijos',
+    title: 'Ravióli de Quatro Queijos',
+    category: 'massas-recheadas',
+    desc: 'Massa fresca recheada com blend nobre de 4 queijos derretidos. Sabor equilibrado que harmoniza com molhos vermelhos ou brancos.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 46.50 }],
+    badge: 'Quatro Queijos',
+    badgeType: 'gold',
+    image: IMAGES.ravioliQueijos,
+    hint: 'Pacote 450g • R$ 46,50 etiqueta oficial'
+  },
+  {
+    id: 'massa-ravioli-mussarela-mel-nozes',
+    title: 'Ravióli de Mussarela, Mel e Nozes',
+    category: 'massas-recheadas',
+    desc: 'Combinação nobre e refinada: mussarela suave, fio de mel puro e pedacinhos crocantes de nozes da serra.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 51.00 }],
+    badge: 'Seleção Nobre',
+    badgeType: 'gold',
+    image: IMAGES.ravioliMelNozes,
+    hint: 'Pacote 450g • R$ 51,00 etiqueta oficial'
+  },
+  {
+    id: 'massa-rondellis-giulian',
+    title: 'Rondellis Pastifício Giulian',
+    category: 'massas-recheadas',
+    desc: 'Rondellis artesanais enrolados com perfeição pelo renomado Pastifício Giulian. Escolha seu recheio artesanal.',
+    portions: [
+      { name: 'Tomate Seco e Queijo (420g)', price: 44.00 },
+      { name: 'Figo e Queijo (420g)', price: 44.00 },
+      { name: 'Cebola Caramelizada (420g)', price: 44.00 },
+      { name: 'Presunto e Queijo (420g)', price: 44.00 },
+      { name: 'Damasco com Gorgonzola (420g)', price: 44.00 }
+    ],
+    badge: 'Pastifício Giulian',
+    badgeType: 'gold',
+    image: IMAGES.rondellisGiulian,
+    hint: 'Pacote 420g • Produzido pelo Pastifício Giulian'
+  },
+  {
+    id: 'massa-tortei-tradicional',
+    title: 'Tortéi Colonial de Moranga',
+    category: 'massas-recheadas',
+    desc: 'A grande paixão da Serra Gaúcha: massa fresca recheada com moranga cabotiá assada, queijo colonial e noz-moscada.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 28.50 }],
+    badge: 'Campeão de Vendas',
+    badgeType: 'gold',
+    image: IMAGES.tortei,
+    hint: 'Pacote 450g • A autêntica receita da Serra'
+  },
+  {
+    id: 'massa-tortellone-ricota',
+    title: 'Tortellone de Ricota com Ervas',
+    category: 'massas-recheadas',
+    desc: 'Tortellone de massa fresca artesanal recheado com ricota fresca leve e tempero delicado de ervas finas aromáticas.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 42.00 }],
+    badge: 'Leve & Aromático',
+    badgeType: 'artesanal',
+    image: IMAGES.tortelloneRicota,
+    hint: 'Pacote 450g • Delicado e saboroso'
+  },
+  {
+    id: 'massa-tortellone-carne-panela',
+    title: 'Tortellone de Carne de Panela',
+    category: 'massas-recheadas',
+    desc: 'Recheio farto e suculento de carne bovina cozida lentamente na panela de ferro com tempero da nona.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 54.75 }],
+    badge: 'Assinatura',
+    badgeType: 'gold',
+    image: IMAGES.tortelloneCarne,
+    hint: 'Pacote 450g • Recheio nobre de carne de panela'
+  },
+
+  // =========================================================================
+  // 4. MASSAS LISAS (450g / 500g)
+  // =========================================================================
+  {
+    id: 'massa-fettuccine',
+    title: 'Fettuccine Tradicional com Ovos',
+    category: 'massas-lisas',
+    desc: 'Fitas de massa fresca com ovos selecionados, textura porosa perfeita para abraçar os molhos da La Onda.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 17.50 }],
+    badge: 'Massa Fresca',
+    badgeType: 'artesanal',
+    image: IMAGES.fettuccine,
+    hint: 'Pacote 450g • Cozimento rápido al dente'
+  },
+  {
+    id: 'massa-fettuccine-espinafre',
+    title: 'Fettuccine de Espinafre Natural',
+    category: 'massas-lisas',
+    desc: 'Massa verde artesanal com espinafre fresco e ovos. Cor vibrante e sabor suave que harmoniza com molhos brancos e de queijo.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 21.00 }],
+    badge: 'Massa Verde',
+    badgeType: 'artesanal',
+    image: IMAGES.fettuccineEspinafre,
+    hint: 'Pacote 450g • 100% espinafre natural'
+  },
+  {
+    id: 'massa-fidellini',
+    title: 'Fidellini para Sopas e Caldos',
+    category: 'massas-lisas',
+    desc: 'Massa fininha e delicada, perfeita para acompanhar caldos caseiros reconfortantes e sopas de galinha caipira.',
+    portions: [{ name: 'Pacote 300g', price: 13.50 }],
+    badge: 'Delicado',
+    badgeType: 'artesanal',
+    image: IMAGES.fidellini,
+    hint: 'Pacote 300g • Ideal para caldos e sopas'
+  },
+  {
+    id: 'massa-macarrao',
+    title: 'Macarrão Tradicional da Casa',
+    category: 'massas-lisas',
+    desc: 'Massa artesanal caseira com corte tradicional, textura firme e sabor autêntico de almoço de domingo em família.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 17.50 }],
+    badge: 'Caseiro',
+    badgeType: 'artesanal',
+    image: IMAGES.macarrao,
+    hint: 'Pacote 450g • Tradição italiana'
+  },
+  {
+    id: 'massa-macarrao-tricolor',
+    title: 'Macarrão Tricolor Natural',
+    category: 'massas-lisas',
+    desc: 'Combinação alegre e saborosa de três massas naturais: tradicional com ovos, verde com espinafre e avermelhado com tomate.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 21.00 }],
+    badge: 'Tricolor Natural',
+    badgeType: 'artesanal',
+    image: IMAGES.macarraoTricolor,
+    hint: 'Pacote 450g • Sem corantes artificiais'
+  },
+  {
+    id: 'massa-nhoque-formolo',
+    title: 'Nhoque Formolo de Batatas',
+    category: 'massas-lisas',
+    desc: 'O consagrado nhoque de batatas selecionadas produzido pela tradicional e centenária Massas Formolo. Leve e macio.',
+    portions: [{ name: 'Pacote 500g (Serve 2-3 pessoas)', price: 16.00 }],
+    badge: 'Massas Formolo',
+    badgeType: 'gold',
+    image: IMAGES.nhoqueFormolo,
+    hint: 'Pacote 500g • Produzido pela Massas Formolo'
+  },
+  {
+    id: 'massa-spaghetti',
+    title: 'Spaghetti Tradicional',
+    category: 'massas-lisas',
+    desc: 'O corte mais querido do mundo, produzido artesanalmente para ficar perfeitamente al dente com qualquer molho.',
+    portions: [{ name: 'Pacote 450g (Serve 2-3 pessoas)', price: 17.50 }],
+    badge: 'Al Dente',
+    badgeType: 'artesanal',
+    image: IMAGES.spaghetti,
+    hint: 'Pacote 450g • O clássico indispensável'
+  },
+
+  // =========================================================================
+  // 5. MOLHOS ARTESANAIS (PROMOÇÃO: COMPRE 4 E LEVE 5 nos potes de 300g)
+  // =========================================================================
+  {
+    id: 'molho-alfredo',
+    title: 'Molho Alfredo Aveludado',
+    category: 'molhos',
+    desc: 'Creme de leite fresco, manteiga nobre colonial, queijo parmesão ralado na hora e pimenta branca suave.',
+    portions: [
+      { name: 'Pote 410g', price: 31.00 },
+      { name: 'Pote Família 820g', price: 62.00 }
     ],
     badge: 'Super Cremoso',
     badgeType: 'gold',
-    image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=700&q=80',
-    hint: 'Harmoniza com Molho Sugo ou Bolonhesa'
+    image: IMAGES.molhoAlfredo,
+    hint: 'Disponível em 410g e 820g • Base cremosa de parmesão'
   },
   {
-    id: 'nhoque-recheado-mussarela',
-    title: 'Nhoque Recheado com Mussarela Colonial',
-    category: 'massas',
-    desc: 'Recheio suave de puro queijo mussarela colonial que estica ao cortar.',
-    portions: [
-      { name: 'Bandeja 500g (Serve 2 pessoas)', price: 40.00 },
-      { name: 'Bandeja 1kg (Serve 4 pessoas)', price: 76.00 }
-    ],
-    badge: 'Artesanal',
-    badgeType: 'artesanal',
-    image: IMAGES.nhoque,
-    hint: 'Sem conservantes • Batatas frescas selecionadas'
-  },
-  {
-    id: 'tortei-artesanal',
-    title: 'Tortéi Colonial de Moranga com Especiarias',
-    category: 'massas',
-    desc: 'Massa fina artesanal recheada com moranga cabotiá assada, especiarias nobres e queijo colonial ralado.',
-    portions: [
-      { name: 'Bandeja 500g (Serve 2 pessoas)', price: 35.00 },
-      { name: 'Bandeja 1kg (Serve 4 pessoas)', price: 65.00 }
-    ],
-    badge: 'Mais Vendido',
+    id: 'molho-carbonara',
+    title: 'Molho Carbonara Clássico',
+    category: 'molhos',
+    desc: 'Molho cremoso apurado com pedacinhos dourados de bacon crocante, queijo colonial e pimenta moída na hora.',
+    portions: [{ name: 'Pote 300g', price: 27.00 }],
+    badge: 'Compre 4 Leve 5 ⭐',
     badgeType: 'gold',
-    image: IMAGES.tortei,
-    hint: 'Tradição italiana da Serra Gaúcha'
+    image: IMAGES.molhoCarbonara,
+    hint: 'Pote 300g • Entra na promoção Compre 4 e Leve 5'
+  },
+  {
+    id: 'molho-cogumelos-sugo',
+    title: 'Molho Cogumelos ao Sugo',
+    category: 'molhos',
+    desc: 'Cogumelos frescos salteados no azeite e reduzidos em molho de tomates maduros pelados com ervas finas.',
+    portions: [{ name: 'Pote 300g', price: 28.00 }],
+    badge: 'Compre 4 Leve 5 ⭐',
+    badgeType: 'gold',
+    image: IMAGES.molhoCogumelos,
+    hint: 'Pote 300g • Entra na promoção Compre 4 e Leve 5'
+  },
+  {
+    id: 'molho-da-codorna',
+    title: 'Molho da Codorna (sem carne)',
+    category: 'molhos',
+    desc: 'Molho especial apurado com o rico caldo do cozimento aromático da codorna temperada com vinho e especiarias da serra.',
+    portions: [{ name: 'Pote 300g', price: 17.00 }],
+    badge: 'Compre 4 Leve 5 ⭐',
+    badgeType: 'artesanal',
+    image: IMAGES.molhoCodorna,
+    hint: 'Pote 300g • Entra na promoção Compre 4 e Leve 5'
+  },
+  {
+    id: 'molho-do-tatu',
+    title: 'Molho do Tatu (sem carne)',
+    category: 'molhos',
+    desc: 'Molho apurado com o caldo dourado e suculento do assado de tatu bovino com legumes e tempero de panela.',
+    portions: [{ name: 'Pote 300g', price: 17.00 }],
+    badge: 'Compre 4 Leve 5 ⭐',
+    badgeType: 'artesanal',
+    image: IMAGES.molhoTatu,
+    hint: 'Pote 300g • Entra na promoção Compre 4 e Leve 5'
+  },
+  {
+    id: 'molho-noccioli-especial',
+    title: 'Molho Noccioli Especial c/ Nozes',
+    category: 'molhos',
+    desc: 'O molho assinatura da La Onda: fusão aveludada de queijos cremosos salpicada com nozes crocantes selecionadas.',
+    portions: [{ name: 'Pote 300g', price: 28.00 }],
+    badge: 'Assinatura La Onda',
+    badgeType: 'gold',
+    image: IMAGES.molhoNoccioli,
+    hint: 'Pote 300g • Entra na promoção Compre 4 e Leve 5'
+  },
+  {
+    id: 'molho-pesto-genoves',
+    title: 'Molho Pesto Genovês',
+    category: 'molhos',
+    desc: 'Manjericão fresco aromático colhido no dia, azeite de oliva extravirgem, castanhas e queijo parmesão maturado.',
+    portions: [{ name: 'Pote 170g', price: 27.50 }],
+    badge: 'Pesto Fresco',
+    badgeType: 'artesanal',
+    image: IMAGES.molhoPesto,
+    hint: 'Pote 170g • Aroma intenso e fresco de manjericão'
+  },
+  {
+    id: 'molho-quatro-queijos',
+    title: 'Molho Quatro Queijos Cremoso',
+    category: 'molhos',
+    desc: 'Fusão cremosa de gorgonzola, provolone defumado, mussarela colonial e parmesão maturado com creme de leite fresco.',
+    portions: [{ name: 'Pote 300g', price: 27.00 }],
+    badge: 'Compre 4 Leve 5 ⭐',
+    badgeType: 'gold',
+    image: IMAGES.molhoQuatroQueijos,
+    hint: 'Pote 300g • Entra na promoção Compre 4 e Leve 5'
+  },
+  {
+    id: 'molho-tomates-secos',
+    title: 'Molho de Tomates Secos',
+    category: 'molhos',
+    desc: 'Tomates secos artesanais combinados com ervas aromáticas e azeite extravirgem em molho encorpado.',
+    portions: [{ name: 'Pote 300g', price: 27.00 }],
+    badge: 'Compre 4 Leve 5 ⭐',
+    badgeType: 'artesanal',
+    image: IMAGES.molhoTomatesSecos,
+    hint: 'Pote 300g • Entra na promoção Compre 4 e Leve 5'
+  },
+  {
+    id: 'molho-tradicional-gourmet',
+    title: 'Molho Tradicional c/ Moela',
+    category: 'molhos',
+    desc: 'Molho vermelho rústico encorpado com pedacinhos macios de moela colonial picadinha, rico em tradição e sabor de nona.',
+    portions: [{ name: 'Pote 300g', price: 26.00 }],
+    badge: 'Compre 4 Leve 5 ⭐',
+    badgeType: 'gold',
+    image: IMAGES.molhoMoela,
+    hint: 'Pote 300g • Entra na promoção Compre 4 e Leve 5'
+  },
+  {
+    id: 'molho-vermelho-frango',
+    title: 'Molho Vermelho c/ Frango Desfiado',
+    category: 'molhos',
+    desc: 'Peito de frango cozido e desfiado em molho de tomates maduros refogados lentamente com alho, cebola e cheiro-verde.',
+    portions: [{ name: 'Pote 300g', price: 26.00 }],
+    badge: 'Compre 4 Leve 5 ⭐',
+    badgeType: 'artesanal',
+    image: IMAGES.molhoFrango,
+    hint: 'Pote 300g • Entra na promoção Compre 4 e Leve 5'
   },
 
-  // --- LASANHAS & PANQUECAS DE FORNO ---
+  // =========================================================================
+  // 6. CARNES & PRATOS ESPECIAIS
+  // =========================================================================
   {
-    id: 'lasanha-bolonhesa',
-    title: 'Lasanha à Bolonhesa Gratinada',
-    category: 'lasanhas',
-    desc: 'Camadas generosas de massa artesanal, carne moída apurada por horas, molho de tomate e queijo derretido.',
+    id: 'carne-alcatra-imperial',
+    title: 'Alcatra Imperial da Casa',
+    category: 'carnes',
+    desc: 'Cortes nobres de alcatra marinados no tempero imperial secreto da La Onda. Carne macia, suculenta e saborosa.',
     portions: [
-      { name: 'Porção Média 650g', price: 45.00 },
-      { name: 'Porção Família 1.3kg', price: 82.00 }
+      { name: 'Porção 400g (Serve 1-2 pessoas)', price: 37.50 },
+      { name: 'Porção 800g (Serve 3-4 pessoas)', price: 75.00 }
+    ],
+    badge: 'Especialidade',
+    badgeType: 'gold',
+    image: IMAGES.alcatraImperial,
+    hint: 'R$ 37,50 (400g) / R$ 75,00 (800g) • Marinada especial'
+  },
+  {
+    id: 'carne-parmegiana-frango',
+    title: 'À Parmegiana de Frango',
+    category: 'carnes',
+    desc: 'Filés de peito de frango empanados e dourados com crosta sequinha, molho de tomate natural e mussarela gratinada.',
+    portions: [{ name: 'Bandeja 580g (Serve 2 pessoas)', price: 45.00 }],
+    badge: 'Gratinado',
+    badgeType: 'gold',
+    image: IMAGES.parmegianaFrango,
+    hint: 'Bandeja 580g • Pronto para aquecer e servir'
+  },
+  {
+    id: 'carne-bife-parmegiana',
+    title: 'Bife Bovino à Parmegiana',
+    category: 'carnes',
+    desc: 'Bifes bovinos selecionados, empanados artesanalmente com crosta crocante, molho sugo encorpado e bastante queijo.',
+    portions: [
+      { name: 'Porção Média 600g (Serve 2 pessoas)', price: 64.50 },
+      { name: 'Porção Família 1,2kg (Serve 4 pessoas)', price: 129.00 }
+    ],
+    badge: 'Mais Pedido',
+    badgeType: 'gold',
+    image: IMAGES.bifeParmegiana,
+    hint: 'Disponível em 600g e 1,2kg • Suculento e farto'
+  },
+  {
+    id: 'carne-de-panela',
+    title: 'Carne de Panela Tradicional',
+    category: 'carnes',
+    desc: 'Carne bovina de primeira cozida demoradamente na panela de ferro com temperos coloniais até desmanchar no garfo.',
+    portions: [{ name: 'Bandeja 500g (Serve 2 pessoas)', price: 55.00 }],
+    badge: 'Sabor da Nona',
+    badgeType: 'artesanal',
+    image: IMAGES.carnePanela,
+    hint: 'Bandeja 500g • Molho denso e aromático'
+  },
+  {
+    id: 'carne-codornas-recheadas',
+    title: 'Codornas Recheadas Assadas',
+    category: 'carnes',
+    desc: 'Codornas inteiras selecionadas, recheadas com farofa artesanal rica e assadas até ficarem douradas e perfumadas.',
+    portions: [
+      { name: '1 Unidade Recheada (400g)', price: 41.00 },
+      { name: '2 Unidades Recheadas (800g)', price: 82.00 }
+    ],
+    badge: 'Alta Gastronomia',
+    badgeType: 'gold',
+    image: IMAGES.codornasRecheadas,
+    hint: 'Disponível em 1 un (400g) ou 2 un (800g)'
+  },
+  {
+    id: 'carne-escondidinho',
+    title: 'Escondidinho de Carne de Panela',
+    category: 'carnes',
+    desc: 'Purê aveludado cremoso recheado com carne de panela desfiada e coberto com queijo colonial tostado.',
+    portions: [
+      { name: 'Porção Média 500g (Serve 2 pessoas)', price: 41.00 },
+      { name: 'Porção Família 1kg (Serve 4 pessoas)', price: 82.00 }
+    ],
+    badge: 'Cremoso',
+    badgeType: 'gold',
+    image: IMAGES.escondidinho,
+    hint: 'Disponível em 500g e 1kg • Cobertura gratinada'
+  },
+  {
+    id: 'carne-file-parmegiana',
+    title: 'Filé Mignon à Parmegiana Nobre',
+    category: 'carnes',
+    desc: 'O corte mais nobre da culinária: filé mignon macio empanado com crosta crocante, molho de tomate pelado e queijo derretido.',
+    portions: [
+      { name: 'Porção Média 600g (Serve 2 pessoas)', price: 74.50 },
+      { name: 'Porção Família 1,2kg (Serve 4 pessoas)', price: 149.00 }
+    ],
+    badge: 'Filé Mignon Nobre',
+    badgeType: 'gold',
+    image: IMAGES.fileParmegiana,
+    hint: 'Disponível em 600g e 1,2kg • Filé mignon de primeira'
+  },
+  {
+    id: 'carne-frango-cremoso-quatro-queijos',
+    title: 'Frango Cremoso com 4 Queijos',
+    category: 'carnes',
+    desc: 'Iscas suculentas de peito de frango envolvidas em molho cremoso aos quatro queijos e gratinadas ao forno.',
+    portions: [
+      { name: 'Porção Média 525g', price: 41.00 },
+      { name: 'Porção Família 1,05kg', price: 82.00 }
+    ],
+    badge: 'Super Cremoso',
+    badgeType: 'gold',
+    image: IMAGES.frangoCremoso,
+    hint: 'Disponível em 525g e 1,05kg • Molho 4 queijos denso'
+  },
+  {
+    id: 'carne-fricasse-frango',
+    title: 'Fricassê de Frango c/ Purê Cremoso',
+    category: 'carnes',
+    desc: 'Frango desfiado cremoso com requeijão e milho sobre farta camada de purê de batata artesanal e queijo tostado.',
+    portions: [
+      { name: 'Porção Média 500g', price: 39.00 },
+      { name: 'Porção Família 1kg', price: 78.00 }
+    ],
+    badge: 'Conforto',
+    badgeType: 'gold',
+    image: IMAGES.fricasseFrango,
+    hint: 'Disponível em 500g e 1kg • Purê aveludado e frango'
+  },
+  {
+    id: 'carne-tatu-recheado',
+    title: 'Tatu Bovino c/ Calabresa',
+    category: 'carnes',
+    desc: 'Peça macia de tatu bovino recheada com calabresa nobre e temperos coloniais, fatiada e imersa no molho do próprio assado.',
+    portions: [
+      { name: 'Porção 400g (Serve 1-2 pessoas)', price: 38.00 },
+      { name: 'Porção 800g (Serve 3-4 pessoas)', price: 76.00 }
+    ],
+    badge: 'Tradição Gaúcha',
+    badgeType: 'gold',
+    image: IMAGES.tatuRecheado,
+    hint: 'Disponível em 400g e 800g • Fatiado em molho de assado'
+  },
+
+  // =========================================================================
+  // 7. LASANHAS GRATINADAS (550g e 1Kg)
+  // =========================================================================
+  {
+    id: 'lasanha-carne-bolonhesa',
+    title: 'Lasanha de Carne à Bolonhesa',
+    category: 'lasanhas',
+    desc: 'Camadas generosas de massa artesanal, carne bovina moída apurada lentamente em molho de tomate pelado e queijo derretido.',
+    portions: [
+      { name: 'Porção Média 550g', price: 45.75 },
+      { name: 'Porção Família 1kg', price: 81.75 }
     ],
     badge: 'Campeã de Vendas',
     badgeType: 'gold',
-    image: IMAGES.lasanha,
-    hint: 'Pronta para aquecer no forno ou micro-ondas'
+    image: IMAGES.lasanhaBolonhesa,
+    hint: 'Disponível em 550g e 1kg • Pronta para assar'
   },
   {
-    id: 'lasanha-3-queijos',
-    title: 'Lasanha Três Queijos Especiais',
+    id: 'lasanha-carne-massa-verde',
+    title: 'Lasanha de Carne com Massa Verde',
     category: 'lasanhas',
-    desc: 'Mussarela colonial, provolone aromático e parmesão maturado com molho bechamel aveludado.',
+    desc: 'Massa artesanal verde de espinafre intercalada com molho bolonhesa clássico e mussarela colonial gratinada.',
     portions: [
-      { name: 'Porção Média 650g', price: 43.00 },
-      { name: 'Porção Família 1.3kg', price: 78.00 }
+      { name: 'Porção Média 550g', price: 45.75 },
+      { name: 'Porção Família 1kg', price: 81.75 }
     ],
-    badge: 'Super Queijo',
+    badge: 'Massa Verde',
     badgeType: 'gold',
-    image: 'https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=700&q=80',
-    hint: 'Gratinada douradinha'
+    image: IMAGES.lasanhaVerde,
+    hint: 'Disponível em 550g e 1kg • Massa de espinafre fresco'
   },
   {
-    id: 'lasanha-abobrinha-frango',
-    title: 'Lasanha de Abobrinha com Frango Desfiado',
+    id: 'lasanha-carne-panela',
+    title: 'Lasanha de Carne de Panela',
     category: 'lasanhas',
-    desc: 'Fatias finas de abobrinha fresca, frango desfiado suculento e molho branco com ervas finas.',
+    desc: 'Carne bovina desfiada com tempero de família entre camadas de massa fresca caseira e muito queijo colonial derretido.',
     portions: [
-      { name: 'Porção Média 650g', price: 47.00 },
-      { name: 'Porção Família 1.3kg', price: 86.00 }
+      { name: 'Porção Média 550g', price: 47.75 },
+      { name: 'Porção Família 1kg', price: 85.50 }
     ],
-    badge: 'Leve & Saborosa',
-    badgeType: 'artesanal',
-    image: IMAGES.lasanha,
-    hint: 'Equilíbrio perfeito de sabor e leveza'
+    badge: 'Especial La Onda',
+    badgeType: 'gold',
+    image: IMAGES.lasanhaCarnePanela,
+    hint: 'Disponível em 550g e 1kg • Recheio de carne de panela'
   },
   {
-    id: 'lasanha-tradicional',
-    title: 'Lasanha Tradicional da Cantina',
+    id: 'lasanha-espinafre',
+    title: 'Lasanha de Espinafre c/ Bechamel',
     category: 'lasanhas',
-    desc: 'Receita histórica com molho de tomate pelado, presunto selecionado e mussarela colonial.',
+    desc: 'Recheio suave de espinafre fresco com molho bechamel aveludado e queijo colonial gratinado dourado.',
     portions: [
-      { name: 'Porção Média 650g', price: 43.00 },
-      { name: 'Porção Família 1.3kg', price: 78.00 }
-    ],
-    badge: 'Tradicional',
-    badgeType: 'artesanal',
-    image: IMAGES.lasanha,
-    hint: 'O autêntico almoço de domingo'
-  },
-  {
-    id: 'panqueca-brocolis',
-    title: 'Panqueca de Brócolis com Palmito',
-    category: 'lasanhas',
-    desc: 'Massa fininha e leve recheada com brócolis fresco, palmito nobre e molho branco gratinado.',
-    portions: [
-      { name: 'Bandeja com 3 Unidades (500g)', price: 35.00 }
+      { name: 'Porção Média 550g', price: 42.50 },
+      { name: 'Porção Família 1kg', price: 76.50 }
     ],
     badge: 'Vegetariana',
     badgeType: 'artesanal',
-    image: 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=700&q=80',
-    hint: 'Perfeita para uma refeição prática e saudável'
+    image: IMAGES.lasanhaEspinafre,
+    hint: 'Disponível em 550g e 1kg • Leve e cremosa'
   },
   {
-    id: 'panqueca-3-queijos',
-    title: 'Panqueca Três Queijos Gratinada',
+    id: 'lasanha-frango',
+    title: 'Lasanha de Frango Cremosa',
     category: 'lasanhas',
-    desc: 'Panquecas artesanais recheadas com mix de queijos derretidos e coberta com molho sugo.',
+    desc: 'Peito de frango cozido e desfiado em molho aromático com camadas generosas de queijo mussarela derretido.',
     portions: [
-      { name: 'Bandeja com 3 Unidades (500g)', price: 40.00 }
+      { name: 'Porção Média 550g', price: 45.75 },
+      { name: 'Porção Família 1kg', price: 81.75 }
     ],
-    badge: 'Gratinada',
+    badge: 'Clássica',
+    badgeType: 'artesanal',
+    image: IMAGES.lasanhaFrango,
+    hint: 'Disponível em 550g e 1kg • Frango desfiado suculento'
+  },
+  {
+    id: 'lasanha-quatro-queijos',
+    title: 'Lasanha Quatro Queijos Gratinada',
+    category: 'lasanhas',
+    desc: 'Mussarela colonial, provolone defumado, gorgonzola e parmesão maturado fundidos em molho branco especial.',
+    portions: [
+      { name: 'Porção Média 550g', price: 46.75 },
+      { name: 'Porção Família 1kg', price: 84.50 }
+    ],
+    badge: 'Super Queijo',
     badgeType: 'gold',
-    image: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=700&q=80',
-    hint: 'Queijo derretendo a cada garfada'
+    image: IMAGES.lasanhaQueijos,
+    hint: 'Disponível em 550g e 1kg • Quatro queijos nobres fundidos'
+  },
+  {
+    id: 'lasanha-rose-carne-verde',
+    title: 'Lasanha Rosé c/ Massa Verde',
+    category: 'lasanhas',
+    desc: 'Massa verde com molho rosé cremoso (tomate pelado e creme fresco), carne bovina selecionada e queijo gratinado.',
+    portions: [
+      { name: 'Porção Média 550g', price: 45.75 },
+      { name: 'Porção Família 1kg', price: 81.75 }
+    ],
+    badge: 'Sofisticada',
+    badgeType: 'gold',
+    image: IMAGES.lasanhaRose,
+    hint: 'Disponível em 550g e 1kg • Massa verde e molho rosé'
   },
 
-  // --- MOLHOS ARTESANAIS ---
+  // =========================================================================
+  // 8. PANQUECAS SEM MOLHO (400g - 4 unidades)
+  // =========================================================================
   {
-    id: 'molho-camarao',
-    title: 'Molho de Camarão Especial',
-    category: 'molhos',
-    desc: 'Camarões selecionados em redução de tomates frescos, azeite de oliva e toque de ervas finas.',
-    portions: [
-      { name: 'Pote 400g', price: 26.00 }
-    ],
-    badge: 'Premium',
-    badgeType: 'gold',
-    image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80',
-    hint: 'Ideal para nhoques, massas e pizzas'
-  },
-  {
-    id: 'molho-bolonhesa',
-    title: 'Molho Bolonhesa Artesanal',
-    category: 'molhos',
-    desc: 'Carne bovina de primeira apurada lentamente com tomates pelados e tempero verde fresco.',
-    portions: [
-      { name: 'Pote 500g', price: 20.00 },
-      { name: 'Pote 1kg', price: 38.00 }
-    ],
-    badge: '8h de Cozimento',
-    badgeType: 'gold',
-    image: IMAGES.bolonhesa,
-    hint: 'O clássico indispensável para sua massa'
-  },
-  {
-    id: 'molho-4-queijos',
-    title: 'Molho Quatro Queijos Cremoso',
-    category: 'molhos',
-    desc: 'Gorgonzola, provolone, mussarela e parmesão com creme de leite fresco.',
-    portions: [
-      { name: 'Pote 500g', price: 22.00 },
-      { name: 'Pote 1kg', price: 40.00 }
-    ],
-    badge: 'Aveludado',
-    badgeType: 'gold',
-    image: IMAGES.quatroqueijos,
-    hint: 'Combina perfeitamente com Nhoque Noccioli e Tortéi'
-  },
-  {
-    id: 'molho-frango',
-    title: 'Molho de Frango Desfiado',
-    category: 'molhos',
-    desc: 'Peito de frango cozido e desfiado em molho de tomate colonial aromático.',
-    portions: [
-      { name: 'Pote 500g', price: 22.00 }
-    ],
-    badge: 'Caseiro',
+    id: 'panqueca-carne-moida',
+    title: 'Panquecas de Carne Moída (4 un)',
+    category: 'panquecas',
+    desc: '4 panquecas artesanais sem molho (400g) recheadas com carne moída de primeira temperada com alho, cebola e cheiro-verde.',
+    portions: [{ name: 'Bandeja 400g (4 unidades)', price: 36.00 }],
+    badge: 'Clássica',
     badgeType: 'artesanal',
-    image: 'https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=700&q=80',
-    hint: 'Recheio leve e saboroso'
+    image: IMAGES.panquecaCarneMoida,
+    hint: '4 unidades (400g) • Sirva com molhos La Onda'
   },
   {
-    id: 'molho-sugo',
-    title: 'Molho ao Sugo Rústico',
-    category: 'molhos',
-    desc: '100% tomates maduros selecionados, azeite extravirgem, alho dourado e folhas frescas de manjericão.',
-    portions: [
-      { name: 'Pote 500g', price: 18.00 }
-    ],
-    badge: '100% Natural',
-    badgeType: 'artesanal',
-    image: IMAGES.sugo,
-    hint: 'Sem conservantes e sem acidez'
+    id: 'panqueca-carne-panela',
+    title: 'Panquecas de Carne de Panela (4 un)',
+    category: 'panquecas',
+    desc: '4 panquecas de massa fininha sem molho (400g) recheadas com carne bovina de panela desfiada e suculenta.',
+    portions: [{ name: 'Bandeja 400g (4 unidades)', price: 38.00 }],
+    badge: 'Saborosa',
+    badgeType: 'gold',
+    image: IMAGES.panquecaCarnePanela,
+    hint: '4 unidades (400g) • Sirva com molhos La Onda'
   },
   {
-    id: 'molho-sugo-branco',
-    title: 'Molho Branco Bechamel Colonial',
-    category: 'molhos',
-    desc: 'Manteiga colonial, leite fresco e toque suave de noz-moscada ralada na hora.',
-    portions: [
-      { name: 'Pote 500g', price: 18.00 }
-    ],
-    badge: 'Clássico',
+    id: 'panqueca-frango-queijo',
+    title: 'Panquecas Frango com Queijo (4 un)',
+    category: 'panquecas',
+    desc: '4 panquecas sem molho (400g) recheadas com frango desfiado cremoso e queijo mussarela colonial derretido.',
+    portions: [{ name: 'Bandeja 400g (4 unidades)', price: 38.00 }],
+    badge: 'Mais Pedida',
+    badgeType: 'gold',
+    image: IMAGES.panquecaFrangoQueijo,
+    hint: '4 unidades (400g) • Sirva com molhos La Onda'
+  },
+  {
+    id: 'panqueca-milho-queijo',
+    title: 'Panquecas Milho com Queijo (4 un)',
+    category: 'panquecas',
+    desc: '4 panquecas sem molho (400g) recheadas com milho verde doce selecionado e queijo colonial derretido.',
+    portions: [{ name: 'Bandeja 400g (4 unidades)', price: 38.00 }],
+    badge: 'Vegetariana',
     badgeType: 'artesanal',
-    image: IMAGES.quatroqueijos,
-    hint: 'Base nobre para gratinar massas e panquecas'
+    image: IMAGES.panquecaMilhoQueijo,
+    hint: '4 unidades (400g) • Sirva com molhos La Onda'
   },
 
-  // --- PRODUTOS ESPECIAIS & EMPÓRIO ---
+  // =========================================================================
+  // 9. DIVERSOS DO LA ONDA & SOPAS
+  // =========================================================================
   {
-    id: 'carnes-selecionadas',
-    title: 'Cortes & Carnes Nobres Selecionadas',
-    category: 'emporio',
-    desc: 'Porções selecionadas de carnes temperadas para preparos especiais e almoços em família.',
-    portions: [
-      { name: 'Porção Especial (aprox. 800g)', price: 60.00 }
-    ],
-    badge: 'Empório',
+    id: 'diverso-caldo-sopa-1l',
+    title: 'Caldo de Sopa Tradicional (1L)',
+    category: 'diversos',
+    desc: 'Caldo rico apurado por horas com carne e legumes frescos. A base perfeita para preparar agnoline, fidellini ou sopa.',
+    portions: [{ name: 'Garrafa 1 Litro', price: 29.75 }],
+    badge: '100% Caseiro',
     badgeType: 'gold',
-    image: IMAGES.parmegiana,
-    hint: 'Cortes nobres com tempero colonial'
+    image: IMAGES.caldoSopa,
+    hint: 'Garrafa 1 Litro • Perfeito com Agnoline e Fidellini'
   },
   {
-    id: 'vinhos-importados',
-    title: 'Vinhos Finos & Seleção Especial',
-    category: 'emporio',
-    desc: 'Rótulos selecionados para harmonização com massas, nhoques e pizzas artesanais.',
-    portions: [
-      { name: 'Garrafa 750ml (Tinto Nobre)', price: 80.00 },
-      { name: 'Garrafa 750ml (Branco Fino)', price: 80.00 }
-    ],
-    badge: 'Adega',
+    id: 'diverso-caldo-galinha-caipira',
+    title: 'Caldo c/ Galinha Caipira (1,2kg)',
+    category: 'diversos',
+    desc: 'Caldo encorpado e reconfortante apurado com pedaços suculentos de galinha caipira e legumes coloniais da serra.',
+    portions: [{ name: 'Pote 1,2kg', price: 39.75 }],
+    badge: 'Galinha Caipira',
     badgeType: 'gold',
-    image: IMAGES.vinho,
-    hint: 'Harmonização perfeita para sua mesa'
+    image: IMAGES.caldoGalinha,
+    hint: 'Pote 1,2kg • Rico em sabor e nutrição'
   },
   {
-    id: 'azeites-premium',
-    title: 'Azeite de Oliva Extravirgem Premium',
-    category: 'emporio',
-    desc: 'Azeite de oliva de baixa acidez, prensado a frio, ideal para finalização de pratos e saladas.',
-    portions: [
-      { name: 'Garrafa 500ml', price: 50.00 }
-    ],
-    badge: 'Importado',
-    badgeType: 'gold',
-    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=700&q=80',
-    hint: 'Acidez máxima 0,2%'
-  },
-  {
-    id: 'produtos-coloniais',
-    title: 'Kit Produtos Coloniais da Serra',
-    category: 'emporio',
-    desc: 'Seleção especial de queijo colonial curado e salame serrano artesanal.',
-    portions: [
-      { name: 'Pacote Especialidade Local', price: 30.00 }
-    ],
-    badge: 'Serra Gaúcha',
+    id: 'diverso-feijao-bacon-calabresa',
+    title: 'Feijão com Bacon e Calabresa',
+    category: 'diversos',
+    desc: 'Feijão colonial cozido no capricho com pedacinhos dourados de bacon, rodelas de calabresa fatiada e tempero caseiro.',
+    portions: [{ name: 'Pote 500g', price: 36.50 }],
+    badge: 'Feito na Hora',
     badgeType: 'artesanal',
-    image: IMAGES.polenta,
-    hint: 'Tradição colonial de Caxias do Sul'
+    image: IMAGES.feijaoBacon,
+    hint: 'Pote 500g • Tempero colonial da serra'
+  },
+  {
+    id: 'diverso-lentilha-calabresa',
+    title: 'Lentilha com Calabresa da Serra',
+    category: 'diversos',
+    desc: 'Lentilha macia e nutritiva cozida com calabresa nobre, legumes frescos e temperos aromáticos coloniais.',
+    portions: [{ name: 'Pote 500g', price: 36.50 }],
+    badge: 'Reconfortante',
+    badgeType: 'artesanal',
+    image: IMAGES.lentilhaCalabresa,
+    hint: 'Pote 500g • Prato reconfortante e prático'
+  },
+  {
+    id: 'diverso-pien-tradicional',
+    title: 'Piên Tradicional Colonial (250g)',
+    category: 'diversos',
+    desc: 'A legítima iguaria colonial italiana feita com miúdos selecionados, queijo e tempero verde para enriquecer seu caldo de sopa.',
+    portions: [{ name: 'Pacote 250g', price: 20.00 }],
+    badge: 'Tradição Italiana',
+    badgeType: 'gold',
+    image: IMAGES.pien,
+    hint: 'Pacote 250g • O autêntico piên de Caxias do Sul'
   }
 ];
 
@@ -393,7 +1009,7 @@ let searchQuery = '';
 let cart = [];
 let activeModalProduct = null;
 let selectedPortionIndex = 0;
-let selectedProductState = 'Fresco (para preparar hoje)';
+let selectedProductState = 'Congelado Artesanal';
 let modalQuantity = 1;
 let deliveryType = 'entrega'; // 'entrega' ou 'retirada'
 let paymentMethod = 'pix';    // 'pix', 'cartao', 'dinheiro'
@@ -452,34 +1068,37 @@ function setupEventListeners() {
   if (continueShoppingBtn) continueShoppingBtn.addEventListener('click', closeCartDrawer);
   if (cartOverlay) cartOverlay.addEventListener('click', closeCartDrawer);
 
-  // Delivery Switcher Buttons
-  const btnDelivery = document.getElementById('btn-type-delivery');
-  const btnPickup = document.getElementById('btn-type-pickup');
-  const addressGroup = document.getElementById('delivery-address-group');
+  // Delivery / Pickup Toggle
+  const tabDelivery = document.getElementById('tab-delivery');
+  const tabPickup = document.getElementById('tab-pickup');
+  const addressBlock = document.getElementById('address-field-block');
+  const pickupInfo = document.getElementById('pickup-info-msg');
 
-  if (btnDelivery && btnPickup) {
-    btnDelivery.addEventListener('click', () => {
+  if (tabDelivery && tabPickup) {
+    tabDelivery.addEventListener('click', () => {
       deliveryType = 'entrega';
-      btnDelivery.classList.add('active');
-      btnPickup.classList.remove('active');
-      if (addressGroup) addressGroup.style.display = 'block';
+      tabDelivery.classList.add('active');
+      tabPickup.classList.remove('active');
+      if (addressBlock) addressBlock.style.display = 'block';
+      if (pickupInfo) pickupInfo.style.display = 'none';
       updateCartUI();
     });
 
-    btnPickup.addEventListener('click', () => {
+    tabPickup.addEventListener('click', () => {
       deliveryType = 'retirada';
-      btnPickup.classList.add('active');
-      btnDelivery.classList.remove('active');
-      if (addressGroup) addressGroup.style.display = 'none';
+      tabPickup.classList.add('active');
+      tabDelivery.classList.remove('active');
+      if (addressBlock) addressBlock.style.display = 'none';
+      if (pickupInfo) pickupInfo.style.display = 'flex';
       updateCartUI();
     });
   }
 
-  // Payment Switcher Buttons
+  // Payment Selector
   const payPix = document.getElementById('pay-pix');
   const payCard = document.getElementById('pay-card');
   const payCash = document.getElementById('pay-cash');
-  const pixBox = document.getElementById('pix-helper-box');
+  const pixBox = document.getElementById('pix-payment-box');
 
   if (payPix && payCard && payCash) {
     payPix.addEventListener('click', () => {
@@ -574,12 +1193,16 @@ function renderCategories() {
   if (!container) return;
 
   const categories = [
-    { id: 'all', name: 'Todos os Produtos', icon: 'utensils' },
+    { id: 'all', name: 'Todos os Pratos', icon: 'utensils' },
     { id: 'pizzas', name: 'Pizzas Artesanais', icon: 'pizza' },
-    { id: 'massas', name: 'Nhoques & Massas', icon: 'sparkles' },
-    { id: 'lasanhas', name: 'Lasanhas & Panquecas', icon: 'chef-hat' },
-    { id: 'molhos', name: 'Molhos Especiais', icon: 'flame' },
-    { id: 'emporio', name: 'Adega & Empório', icon: 'wine' }
+    { id: 'pizzas-doces', name: 'Pizzas Doces', icon: 'sparkles' },
+    { id: 'massas-recheadas', name: 'Massas Recheadas', icon: 'chef-hat' },
+    { id: 'massas-lisas', name: 'Massas Lisas', icon: 'package' },
+    { id: 'molhos', name: 'Molhos Artesanais', icon: 'flame' },
+    { id: 'carnes', name: 'Carnes & Especiais', icon: 'drumstick' },
+    { id: 'lasanhas', name: 'Lasanhas Gratinadas', icon: 'layers' },
+    { id: 'panquecas', name: 'Panquecas (4 un)', icon: 'circle-dot' },
+    { id: 'diversos', name: 'Diversos & Sopas', icon: 'soup' }
   ];
 
   container.innerHTML = categories.map(cat => {
@@ -605,7 +1228,12 @@ function renderHighlights() {
   const section = document.getElementById('destaques-section');
   if (!grid) return;
 
-  const highlightIds = ['nhoque-noccioli', 'pizza-camarao', 'lasanha-bolonhesa', 'tortei-artesanal'];
+  const highlightIds = [
+    'massa-tortei-tradicional',
+    'pizza-camarao',
+    'lasanha-carne-bolonhesa',
+    'carne-file-parmegiana'
+  ];
   const highlightProducts = highlightIds.map(id => PRODUCTS_DATA.find(p => p.id === id)).filter(Boolean);
 
   if (searchQuery || currentCategory !== 'all') {
@@ -649,6 +1277,12 @@ window.selectCategory = function(catId) {
   renderCategories();
   renderHighlights();
   renderProducts();
+
+  // Smooth scroll to catalog grid
+  const catalogEl = document.querySelector('.catalog-section');
+  if (catalogEl && catId !== 'all') {
+    catalogEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 };
 
 // Render Products Grid
@@ -680,7 +1314,24 @@ function renderProducts() {
     return;
   }
 
-  grid.innerHTML = filtered.map(product => {
+  // Molhos Special Promo Banner when in Molhos category
+  let promoHtml = '';
+  if (currentCategory === 'molhos') {
+    promoHtml = `
+      <div style="grid-column: 1 / -1; background: linear-gradient(135deg, #7F1D1D 0%, #991B1B 100%); color: #fff; padding: 16px 20px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 8px; box-shadow: 0 4px 14px rgba(127,29,29,0.25);">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: #F59E0B; color: #7F1D1D; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 900; flex-shrink: 0;">5x4</div>
+          <div>
+            <h4 style="font-family: var(--font-title); font-size: 1.05rem; font-weight: 700; margin: 0; color: #fff;">PROMOÇÃO OFICIAL: COMPRE 4 E LEVE 5</h4>
+            <p style="font-size: 0.85rem; margin: 2px 0 0 0; color: rgba(255,255,255,0.9);">Válida exclusivamente para potes de 300g. Monte sua seleção!</p>
+          </div>
+        </div>
+        <span style="background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; white-space: nowrap;">Imperdível</span>
+      </div>
+    `;
+  }
+
+  grid.innerHTML = promoHtml + filtered.map(product => {
     const defaultPortion = product.portions[0];
     const hasMultiplePortions = product.portions.length > 1;
 
@@ -724,7 +1375,7 @@ window.openProductModal = function(productId) {
 
   activeModalProduct = product;
   selectedPortionIndex = 0;
-  selectedProductState = 'Fresco (para preparar hoje)';
+  selectedProductState = 'Congelado Artesanal';
   modalQuantity = 1;
 
   const modal = document.getElementById('product-modal');
@@ -752,12 +1403,13 @@ window.openProductModal = function(productId) {
     `).join('');
   }
 
-  // Render State Selector for fresh items
+  // Render State Selector for fresh/frozen massas
   if (stateContainer) {
-    if (product.category === 'massas' || product.category === 'pratos') {
+    if (product.category === 'massas-recheadas' || product.category === 'massas-lisas') {
+      selectedProductState = 'Fresco (para preparar hoje)';
       stateContainer.innerHTML = `
         <div class="modal-section-title">
-          <span>Ponto do Produto</span>
+          <span>Ponto da Massa</span>
           <span class="tag">Obrigatório</span>
         </div>
         <div class="state-selector-grid">
@@ -770,6 +1422,7 @@ window.openProductModal = function(productId) {
         </div>
       `;
     } else {
+      selectedProductState = 'Congelado Artesanal';
       stateContainer.innerHTML = '';
     }
   }
@@ -927,7 +1580,7 @@ function updateCartUI() {
       container.innerHTML = `
         <div class="cart-empty-state">
           <i data-lucide="shopping-bag"></i>
-          <p>Seu pedido está vazio no momento.<br>Escolha suas massas e molhos favoritos!</p>
+          <p>Seu pedido está vazio no momento.<br>Escolha suas massas, molhos e pratos favoritos!</p>
         </div>
       `;
     }
@@ -944,7 +1597,7 @@ function updateCartUI() {
       <div class="cart-item-card">
         <div class="cart-item-info">
           <div class="cart-item-title">${item.title}</div>
-          <div class="cart-item-portion">${item.portionName} • ${item.state}</div>
+          <div class="cart-item-portion">${item.portionName}${item.state && item.state !== 'Congelado Artesanal' ? ` • ${item.state}` : ''}</div>
           ${item.obs ? `<div class="cart-item-obs">Obs: ${item.obs}</div>` : ''}
           <div class="cart-item-bottom">
             <div class="cart-item-price">${formatBRL(item.unitPrice * item.quantity)}</div>
@@ -1050,10 +1703,10 @@ window.clearCart = askClearCart;
 window.closeClearModal = closeClearModal;
 window.confirmClearCart = confirmClearCart;
 
-// Submit Order via WhatsApp (PADRÃO OFICIAL COMANDA ONIRA.FLY - SEÇÃO 11)
+// Submit Order via WhatsApp (PADRÃO OFICIAL COMANDA ONIRA.FLY)
 function submitOrderViaWhatsApp() {
   if (cart.length === 0) {
-    showToast('🥟 Adicione ao menos um item ao pedido.');
+    showToast('🍝 Adicione ao menos um item ao pedido.');
     return;
   }
 
@@ -1090,7 +1743,9 @@ function submitOrderViaWhatsApp() {
   // Items Checklist
   cart.forEach(item => {
     text += `*${item.quantity}x* ${item.title} · ${item.portionName}\n`;
-    text += `+ Ponto: ${item.state}\n`;
+    if (item.state && item.state !== 'Congelado Artesanal') {
+      text += `+ Ponto: ${item.state}\n`;
+    }
     if (item.obs) {
       text += `_Obs: ${item.obs}_\n`;
     }
@@ -1151,56 +1806,33 @@ function loadCartFromStorage() {
       }
     }
   } catch (e) {
+    console.error('Error loading cart:', e);
     cart = [];
   }
 }
 
-// Toast Notifications (Responsive Width Conformance)
+// Toast Notification
 function showToast(message) {
-  const existing = document.querySelector('.toast-container');
-  if (existing) existing.remove();
+  let toast = document.getElementById('app-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'app-toast';
+    toast.className = 'app-toast';
+    document.body.appendChild(toast);
+  }
 
-  const container = document.createElement('div');
-  container.className = 'toast-container';
-
-  const box = document.createElement('div');
-  box.className = 'toast-box';
-  box.innerHTML = `<i data-lucide="check-circle" style="color: var(--accent-light); flex-shrink: 0;"></i> <span>${message}</span>`;
-
-  container.appendChild(box);
-  document.body.appendChild(container);
-
-  if (window.lucide) window.lucide.createIcons();
+  toast.innerText = message;
+  toast.classList.add('show');
 
   setTimeout(() => {
-    container.style.opacity = '0';
-    container.style.transition = 'opacity 0.3s ease';
-    setTimeout(() => container.remove(), 300);
+    toast.classList.remove('show');
   }, 2800);
 }
 
-// Floating Onira Proposal Widget (.onira-cta) (RETRÁTIL & TRANSPARENTE AO SCROLL)
+// Floating Mobile CTA
 function setupFloatingCTA() {
-  const cta = document.getElementById('onira-cta');
-  const closeBtn = document.getElementById('onira-cta-close');
-  if (!cta) return;
-
-  // 1. Alternância para modo recolhido (não some nunca da tela)
-  if (closeBtn) {
-    closeBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      cta.classList.toggle('collapsed');
-    });
+  const floatingBar = document.getElementById('floating-cart-bar');
+  if (floatingBar) {
+    floatingBar.addEventListener('click', openCartDrawer);
   }
-
-  // 2. Transparência suave durante o scroll
-  let isScrolling;
-  window.addEventListener('scroll', () => {
-    cta.classList.add('scrolling');
-    clearTimeout(isScrolling);
-    isScrolling = setTimeout(() => {
-      cta.classList.remove('scrolling');
-    }, 180);
-  }, { passive: true });
 }

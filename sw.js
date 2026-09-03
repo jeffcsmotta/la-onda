@@ -1,4 +1,4 @@
-const CACHE_NAME = 'la-onda-v2';
+const CACHE_NAME = 'la-onda-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
