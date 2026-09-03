@@ -1032,6 +1032,58 @@ function formatBRL(value) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
+// Sincronização Inteligente de Rolagem dos Botões Flutuantes (Proposta + Pedido)
+function initFloatingWidgetsScroll() {
+  const ctaWidget = document.getElementById('onira-floating-cta');
+  const cartBar = document.getElementById('cart-floating-bar');
+  if (!ctaWidget && !cartBar) return;
+
+  let lastScrollY = window.scrollY;
+  let scrollTimeout = null;
+
+  // No carregamento inicial, se estiver perto do topo, recolhe ambos
+  if (window.scrollY <= 80) {
+    if (ctaWidget) ctaWidget.classList.add('scroll-hidden');
+    if (cartBar) cartBar.classList.add('scroll-hidden');
+  }
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    const scrollDelta = currentScrollY - lastScrollY;
+
+    // Se o drawer estiver aberto, mantém o widget de proposta oculto
+    const drawer = document.getElementById('cart-drawer');
+    const isDrawerOpen = drawer && drawer.classList.contains('active');
+    if (isDrawerOpen) {
+      if (ctaWidget) ctaWidget.classList.add('scroll-hidden');
+      return;
+    }
+
+    // Leve efeito de movimento ativo
+    if (ctaWidget) ctaWidget.classList.add('scrolling-active');
+    if (cartBar) cartBar.classList.add('scrolling-active');
+
+    // Rolando para BAIXO e passou do topo: aparecem
+    if (scrollDelta > 8 && currentScrollY > 80) {
+      if (ctaWidget) ctaWidget.classList.remove('scroll-hidden');
+      if (cartBar && cart.length > 0) cartBar.classList.remove('scroll-hidden');
+    }
+    // Rolando para CIMA ou perto do topo: somem
+    else if (scrollDelta < -6 || currentScrollY <= 80) {
+      if (ctaWidget) ctaWidget.classList.add('scroll-hidden');
+      if (cartBar) cartBar.classList.add('scroll-hidden');
+    }
+
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      if (ctaWidget) ctaWidget.classList.remove('scrolling-active');
+      if (cartBar) cartBar.classList.remove('scrolling-active');
+    }, 200);
+
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+}
+
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
   loadCartFromStorage();
@@ -1040,6 +1092,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderProducts();
   updateCategoryConceptBanner();
   updateCartUI();
+  initFloatingWidgetsScroll();
 
   if (window.lucide) {
     window.lucide.createIcons();
@@ -1396,6 +1449,8 @@ window.confirmAddFromModal = function() {
 window.openCart = function() {
   const drawer = document.getElementById('cart-drawer');
   const overlay = document.getElementById('cart-overlay');
+  const ctaWidget = document.getElementById('onira-floating-cta');
+  if (ctaWidget) ctaWidget.classList.add('scroll-hidden');
   if (drawer && overlay) {
     drawer.classList.add('active');
     overlay.classList.add('active');
@@ -1406,10 +1461,14 @@ window.openCart = function() {
 window.closeCart = function() {
   const drawer = document.getElementById('cart-drawer');
   const overlay = document.getElementById('cart-overlay');
+  const ctaWidget = document.getElementById('onira-floating-cta');
   if (drawer && overlay) {
     drawer.classList.remove('active');
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+  }
+  if (ctaWidget && window.scrollY > 80) {
+    ctaWidget.classList.remove('scroll-hidden');
   }
 };
 
@@ -1558,6 +1617,7 @@ function updateCartUI() {
   }
 
   if (cart.length === 0) {
+    document.body.classList.remove('has-cart-items');
     if (container) {
       container.innerHTML = `
         <div class="cart-empty-state">
@@ -1578,6 +1638,7 @@ function updateCartUI() {
     return;
   }
 
+  document.body.classList.add('has-cart-items');
   if (cartNav) cartNav.classList.remove('cart-empty');
 
   // Render Items in Drawer

@@ -2320,7 +2320,7 @@ input, select, textarea {
   z-index: 800;
   transform: translateY(120px);
   opacity: 0;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, bottom 0.35s ease;
   cursor: pointer;
 }
 
@@ -2368,7 +2368,7 @@ input, select, textarea {
   bottom: 20px;
   left: 20px;
   z-index: 750;
-  background: rgba(15, 23, 42, 0.92);
+  background: rgba(15, 23, 42, 0.94);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-pill);
@@ -2377,13 +2377,31 @@ input, select, textarea {
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  transition: all 0.25s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, bottom 0.35s ease, border-color 0.2s ease;
+}
+
+/* Quando há itens no carrinho no mobile, o card de proposta se alinha acima da barra do pedido */
+body.has-cart-items .onira-cta {
+  bottom: 84px;
 }
 
 .onira-cta:hover {
   transform: translateY(-2px);
   border-color: #F59E0B;
+}
+
+/* Comportamento de Rolagem: Rola pra cima -> some; Rola pra baixo -> aparece */
+.cart-floating-bar.scroll-hidden,
+.onira-cta.scroll-hidden {
+  transform: translateY(180%) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.cart-floating-bar.scrolling-active,
+.onira-cta.scrolling-active {
+  opacity: 0.9;
 }
 
 .onira-avatar {
@@ -2424,6 +2442,25 @@ input, select, textarea {
   font-size: 0.76rem;
   font-weight: 800;
   color: #38BDF8;
+}
+
+@media (max-width: 480px) {
+  .onira-cta {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    padding: 6px 14px 6px 6px;
+    gap: 10px;
+    width: auto;
+  }
+  body.has-cart-items .onira-cta {
+    bottom: 80px;
+  }
+  .cart-floating-bar {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+  }
 }
 
 /* Toast Notification */
